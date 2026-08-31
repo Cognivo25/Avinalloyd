@@ -60,20 +60,20 @@ export const Header: React.FC<HeaderProps> = ({
           isVisible ? 'translate-y-0' : '-translate-y-full'
         } ${
           isScrolled
-            ? 'bg-[#fbf9f6]/90 backdrop-blur-xl border-b border-[#c5a059]/20 py-4 shadow-xs'
-            : 'bg-[#fbf9f6]/75 backdrop-blur-md py-5'
+            ? 'bg-[#fbf9f6]/95 backdrop-blur-xl border-b border-[#c5a059]/20 py-3 md:py-4 shadow-xs'
+            : 'bg-[#fbf9f6]/85 backdrop-blur-md py-3.5 md:py-5'
         }`}
       >
-        <div className="max-w-[1536px] mx-auto px-5 md:px-12 lg:px-20 flex justify-between items-center h-14">
+        <div className="max-w-[1536px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20 flex justify-between items-center h-12 md:h-14">
           {/* Logo & Mobile Menu Toggle */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <button
               id="menu-btn"
               aria-label="Open Menu"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="md:hidden p-2 -ml-2 text-[#141312] hover:opacity-70 transition-opacity flex items-center justify-center"
+              className="md:hidden p-1.5 -ml-1 text-[#141312] hover:opacity-70 transition-opacity flex items-center justify-center shrink-0 cursor-pointer"
             >
-              <div className="w-5 h-4 flex flex-col justify-between">
+              <div className="w-5 h-3.5 flex flex-col justify-between">
                 <span className="w-full h-0.5 bg-[#141312] rounded-full"></span>
                 <span className="w-full h-0.5 bg-[#141312] rounded-full"></span>
                 <span className="w-full h-0.5 bg-[#141312] rounded-full"></span>
@@ -83,12 +83,17 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               id="brand-logo"
               onClick={() => handleNavClick('home')}
-              className="flex items-center gap-2.5 hover:opacity-85 transition-opacity text-left cursor-pointer"
+              className="flex items-center gap-2 sm:gap-2.5 hover:opacity-85 transition-opacity text-left cursor-pointer shrink-0"
             >
-              <span className="font-serif-luxury text-[19px] md:text-[21px] font-medium tracking-[0.06em] text-[#141312] uppercase">
+              <img
+                src="/images/avina-lloyd-logo.svg"
+                alt="Avina Lloyd Logo"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full shadow-2xs shrink-0"
+              />
+              <span className="font-serif-luxury text-[16px] sm:text-[18px] md:text-[20px] font-medium tracking-[0.04em] sm:tracking-[0.06em] text-[#141312] uppercase whitespace-nowrap">
                 AVINA LLOYD
               </span>
-              <span className="font-mono-code text-[10px] text-[#b3884d] border border-[#c5a059]/60 px-2 py-0.5 rounded-sm tracking-wider uppercase font-semibold">
+              <span className="hidden xs:inline-block font-mono-code text-[9px] sm:text-[10px] text-[#b3884d] border border-[#c5a059]/60 px-1.5 sm:px-2 py-0.5 rounded-sm tracking-wider uppercase font-semibold shrink-0">
                 CEO
               </span>
             </button>
@@ -119,10 +124,11 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="header-book-btn"
             onClick={onOpenBooking}
-            className="flex items-center gap-2 font-mono-code text-[11px] bg-[#141312] text-[#c5a059] hover:bg-[#22211e] px-5 py-2.5 rounded-sm transition-all duration-300 cursor-pointer shadow-xs tracking-widest uppercase border border-[#2a2825]"
+            className="flex items-center gap-1.5 sm:gap-2 font-mono-code text-[10px] sm:text-[11px] bg-[#141312] text-[#c5a059] hover:bg-[#22211e] px-3 py-2 sm:px-5 sm:py-2.5 rounded-sm transition-all duration-300 cursor-pointer shadow-xs tracking-wider sm:tracking-widest uppercase border border-[#2a2825] shrink-0"
           >
-            <span>Email Avina Lloyd</span>
-            <span className="text-[12px]">↗</span>
+            <span className="hidden sm:inline">Email Avina Lloyd</span>
+            <span className="sm:hidden">Email</span>
+            <span className="text-[11px] sm:text-[12px]">↗</span>
           </button>
         </div>
       </header>
@@ -142,7 +148,12 @@ export const Header: React.FC<HeaderProps> = ({
         }`}
       >
         <div className="flex justify-between items-center pb-6 border-b border-[#c5a059]/20">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
+            <img
+              src="/images/avina-lloyd-logo.svg"
+              alt="Avina Lloyd Logo"
+              className="w-7 h-7 rounded-full shadow-2xs shrink-0"
+            />
             <span className="font-serif-luxury text-[17px] font-medium tracking-[0.06em] text-[#141312] uppercase">
               AVINA LLOYD
             </span>
