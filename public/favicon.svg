@@ -10,12 +10,14 @@
 
   <g transform="translate(10, 0)">
     <!-- Letter L in Obsidian Charcoal -->
+    <!-- Top serif & vertical stem & lower sweeping horizontal leg -->
     <path
       fill="#232527"
       d="M 255 125 L 320 125 L 320 135 C 310 136 302 142 300 152 L 300 315 L 300 330 C 315 330 360 328 385 300 C 392 292 396 282 398 272 L 405 272 C 400 300 388 322 368 335 C 348 348 318 350 290 350 L 255 350 L 255 338 C 265 336 274 328 274 315 L 274 152 C 274 142 265 136 255 135 Z"
     />
 
     <!-- Letter A in Gold -->
+    <!-- Left thin leg with bottom serif -->
     <path
       fill="url(#alGold)"
       d="M 210 105 L 270 340 L 245 340 L 245 350 L 320 350 L 320 340 L 295 340 L 235 105 Z"

@@ -88,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
               <img
                 src="/images/avina-lloyd-logo.svg"
                 alt="Avina Lloyd Logo"
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full shadow-2xs shrink-0"
+                className="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
               />
               <span className="font-serif-luxury text-[16px] sm:text-[18px] md:text-[20px] font-medium tracking-[0.04em] sm:tracking-[0.06em] text-[#141312] uppercase whitespace-nowrap">
                 AVINA LLOYD
@@ -152,7 +152,7 @@ export const Header: React.FC<HeaderProps> = ({
             <img
               src="/images/avina-lloyd-logo.svg"
               alt="Avina Lloyd Logo"
-              className="w-7 h-7 rounded-full shadow-2xs shrink-0"
+              className="w-7 h-7 object-contain shrink-0"
             />
             <span className="font-serif-luxury text-[17px] font-medium tracking-[0.06em] text-[#141312] uppercase">
               AVINA LLOYD
