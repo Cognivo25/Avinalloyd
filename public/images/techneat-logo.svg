@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" width="100%" height="100%">
+  <defs>
+    <style>
+      .blue-tech { fill: #1473a5; font-family: 'DM Sans', 'Inter', 'Montserrat', -apple-system, sans-serif; font-weight: 800; font-size: 195px; letter-spacing: -3px; }
+      .navy-neat { fill: #032b43; font-family: 'DM Sans', 'Inter', 'Montserrat', -apple-system, sans-serif; font-weight: 800; font-size: 195px; letter-spacing: -3px; }
+    </style>
+  </defs>
+
+  <g transform="translate(15, 175)">
+    <!-- tech in cerulean blue -->
+    <text x="0" y="0" class="blue-tech">tech</text>
+    
+    <!-- neat in dark navy -->
+    <text x="440" y="0" class="navy-neat">neat</text>
+    
+    <!-- Stylized upward cut on the 'n' -->
+    <polygon points="440,-50 495,-105 495,-50" fill="#ffffff" />
+    <polygon points="440,-50 495,-105 495,-100 445,-50" fill="#1473a5" />
+  </g>
+</svg>

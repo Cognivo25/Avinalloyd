@@ -40,11 +40,10 @@ export const Header: React.FC<HeaderProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  const navItems: { label: string; page: PageType; icon: string }[] = [
-    { label: 'Executive Bio', page: 'about', icon: 'person' },
-    { label: 'Initiatives & Impact', page: 'portfolio', icon: 'grid_view' },
-    { label: 'Capabilities & Advisory', page: 'services', icon: 'layers' },
-    { label: 'Connect', page: 'contact', icon: 'edit_note' },
+  const navItems: { label: string; page: PageType }[] = [
+    { label: 'About', page: 'about' },
+    { label: 'Experience', page: 'experience' },
+    { label: 'Initiatives & Impact', page: 'portfolio' },
   ];
 
   const handleNavClick = (page: PageType) => {
@@ -61,36 +60,42 @@ export const Header: React.FC<HeaderProps> = ({
           isVisible ? 'translate-y-0' : '-translate-y-full'
         } ${
           isScrolled
-            ? 'bg-[#f9f9f9]/85 backdrop-blur-xl border-b border-[#cfc4c5]/30 py-4 shadow-xs'
-            : 'bg-[#f9f9f9]/70 backdrop-blur-md py-5'
+            ? 'bg-[#fbf9f6]/90 backdrop-blur-xl border-b border-[#c5a059]/20 py-4 shadow-xs'
+            : 'bg-[#fbf9f6]/75 backdrop-blur-md py-5'
         }`}
       >
-        <div className="max-w-[1280px] mx-auto px-5 md:px-12 lg:px-20 flex justify-between items-center h-14">
+        <div className="max-w-[1536px] mx-auto px-5 md:px-12 lg:px-20 flex justify-between items-center h-14">
           {/* Logo & Mobile Menu Toggle */}
           <div className="flex items-center gap-4">
             <button
               id="menu-btn"
               aria-label="Open Menu"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="md:hidden p-2 -ml-2 text-[#1a1c1c] hover:opacity-70 transition-opacity"
+              className="md:hidden p-2 -ml-2 text-[#141312] hover:opacity-70 transition-opacity flex items-center justify-center"
             >
-              <span className="material-symbols-outlined text-[24px]">menu</span>
+              <div className="w-5 h-4 flex flex-col justify-between">
+                <span className="w-full h-0.5 bg-[#141312] rounded-full"></span>
+                <span className="w-full h-0.5 bg-[#141312] rounded-full"></span>
+                <span className="w-full h-0.5 bg-[#141312] rounded-full"></span>
+              </div>
             </button>
 
             <button
               id="brand-logo"
               onClick={() => handleNavClick('home')}
-              className="flex items-baseline gap-2 font-display text-[22px] md:text-[24px] font-medium tracking-tight text-[#1a1c1c] hover:opacity-80 transition-opacity text-left cursor-pointer"
+              className="flex items-center gap-2.5 hover:opacity-85 transition-opacity text-left cursor-pointer"
             >
-              <span>Avina Lloyd</span>
-              <span className="font-mono-code text-[11px] font-normal text-[#5d5f5f] px-2 py-0.5 rounded-md bg-[#e5e5e5] tracking-wider uppercase hidden sm:inline-block">
-                COO
+              <span className="font-serif-luxury text-[19px] md:text-[21px] font-medium tracking-[0.06em] text-[#141312] uppercase">
+                AVINA LLOYD
+              </span>
+              <span className="font-mono-code text-[10px] text-[#b3884d] border border-[#c5a059]/60 px-2 py-0.5 rounded-sm tracking-wider uppercase font-semibold">
+                CEO
               </span>
             </button>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 font-mono-code text-[12px] tracking-wide">
+          <nav className="hidden md:flex items-center gap-8 font-body text-[13px] tracking-normal">
             {navItems.map((item) => {
               const isActive = currentPage === item.page;
               return (
@@ -100,8 +105,8 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={() => handleNavClick(item.page)}
                   className={`transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'text-[#1a1c1c] font-semibold border-b border-[#1a1c1c] pb-0.5'
-                      : 'text-[#5d5f5f] hover:text-[#1a1c1c] hover:opacity-80'
+                      ? 'text-[#141312] font-semibold border-b border-[#141312] pb-0.5'
+                      : 'text-[#55524e] hover:text-[#141312]'
                   }`}
                 >
                   {item.label}
@@ -114,76 +119,73 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="header-book-btn"
             onClick={onOpenBooking}
-            className="flex items-center gap-2 font-mono-code text-[12px] text-[#1a1c1c] hover:bg-[#1a1c1c] hover:text-white border border-[#1a1c1c]/25 px-4 md:px-5 py-2 md:py-2.5 rounded-full transition-all duration-300 cursor-pointer shadow-2xs hover:shadow-sm"
+            className="flex items-center gap-2 font-mono-code text-[11px] bg-[#141312] text-[#c5a059] hover:bg-[#22211e] px-5 py-2.5 rounded-sm transition-all duration-300 cursor-pointer shadow-xs tracking-widest uppercase border border-[#2a2825]"
           >
-            <span>Executive Advisory</span>
-            <span className="material-symbols-outlined text-[15px]">arrow_outward</span>
+            <span>Email Avina Lloyd</span>
+            <span className="text-[12px]">↗</span>
           </button>
         </div>
       </header>
 
-      {/* Mobile Navigation Drawer */}
-      <div
-        id="mobile-nav-backdrop"
-        onClick={() => setIsMobileMenuOpen(false)}
-        className={`fixed inset-0 bg-black/40 backdrop-blur-xs z-55 transition-opacity duration-300 md:hidden ${
-          isMobileMenuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none'
-        }`}
-      />
+      {/* Mobile Drawer Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-xs z-60 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
 
+      {/* Mobile Menu Panel */}
       <div
-        id="mobile-nav"
-        className={`fixed inset-y-0 left-0 z-60 w-4/5 max-w-sm bg-[#f9f9f9] shadow-2xl transition-transform duration-300 ease-out md:hidden flex flex-col p-6 pt-16 border-r border-[#cfc4c5]/20 ${
+        className={`fixed top-0 left-0 bottom-0 w-[80%] max-w-[340px] bg-[#fbf9f6] z-70 md:hidden p-6 flex flex-col justify-between shadow-2xl transition-transform duration-300 ease-out border-r border-[#c5a059]/20 ${
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <button
-          id="close-menu-btn"
-          aria-label="Close menu"
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="absolute top-5 right-5 p-2 text-[#5d5f5f] hover:text-[#1a1c1c] transition-colors"
-        >
-          <span className="material-symbols-outlined text-[24px]">close</span>
-        </button>
-
-        <div className="font-display text-[32px] font-medium tracking-tight text-[#1a1c1c] mb-6">
-          Menu
+        <div className="flex justify-between items-center pb-6 border-b border-[#c5a059]/20">
+          <div className="flex items-center gap-2">
+            <span className="font-serif-luxury text-[17px] font-medium tracking-[0.06em] text-[#141312] uppercase">
+              AVINA LLOYD
+            </span>
+          </div>
+          <button
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="w-8 h-8 rounded-full bg-[#141312]/5 flex items-center justify-center font-mono-code text-[14px]"
+            aria-label="Close menu"
+          >
+            ✕
+          </button>
         </div>
 
-        <nav className="flex flex-col space-y-2">
+        <nav className="flex flex-col gap-2 py-6">
           {navItems.map((item) => {
             const isActive = currentPage === item.page;
             return (
               <button
                 key={item.page}
                 onClick={() => handleNavClick(item.page)}
-                className={`flex items-center gap-4 py-4 px-3 rounded-lg text-left text-[18px] transition-colors ${
+                className={`flex items-center justify-between text-left py-3 px-3 rounded-lg font-serif-luxury text-[20px] transition-colors ${
                   isActive
-                    ? 'text-[#1a1c1c] font-semibold bg-[#eeeeee] border-l-3 border-[#1a1c1c]'
-                    : 'text-[#5d5f5f] hover:text-[#1a1c1c] hover:bg-[#f3f3f4]'
+                    ? 'text-[#b3884d] font-normal bg-[#f4f0ea]'
+                    : 'text-[#141312] hover:text-[#b3884d]'
                 }`}
               >
-                <span className="material-symbols-outlined text-[20px] text-[#1a1c1c]">
-                  {item.icon}
-                </span>
                 <span>{item.label}</span>
+                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#b3884d]"></span>}
               </button>
             );
           })}
         </nav>
 
-        <div className="mt-auto pt-8 border-t border-[#cfc4c5]/30">
+        <div className="mt-auto pt-8 border-t border-[#c5a059]/20">
           <button
             onClick={() => {
               setIsMobileMenuOpen(false);
               onOpenBooking();
             }}
-            className="flex items-center justify-center gap-2 w-full bg-[#1a1c1c] text-white py-4 rounded-xl font-mono-code text-[12px] uppercase tracking-wider hover:opacity-90 transition-opacity shadow-md"
+            className="flex items-center justify-center gap-2 w-full bg-[#141312] text-[#c5a059] py-3.5 rounded-sm font-mono-code text-[11px] uppercase tracking-widest hover:bg-[#22211e] transition-colors shadow-xs border border-[#2a2825]"
           >
-            <span>Book A Call</span>
-            <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
+            <span>Email Avina Lloyd</span>
+            <span className="text-[12px]">↗</span>
           </button>
         </div>
       </div>

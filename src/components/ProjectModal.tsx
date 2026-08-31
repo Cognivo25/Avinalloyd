@@ -153,10 +153,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 onClose();
                 onOpenBooking();
               }}
-              className="font-mono-code text-[12px] px-6 py-3 bg-[#1a1c1c] text-white rounded-full hover:opacity-85 transition-opacity flex items-center gap-2 cursor-pointer"
+              className="font-mono-code text-[11px] uppercase tracking-wider px-6 py-3 bg-[#141312] text-[#c5a059] rounded-sm hover:bg-[#22211e] transition-colors flex items-center gap-2 cursor-pointer border border-[#2a2825] font-semibold"
             >
-              <span>Discuss Similar Project</span>
-              <span className="material-symbols-outlined text-[15px]">arrow_outward</span>
+              <span>Email Avina Lloyd</span>
+              <span className="text-[12px]">↗</span>
             </button>
           </div>
         </div>

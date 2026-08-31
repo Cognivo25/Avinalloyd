@@ -27,6 +27,14 @@
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+.font-serif-luxury {
+  font-family: 'Cinzel', 'Cormorant Garamond', 'Didot', 'Bodoni MT', Georgia, serif;
+}
+
+.font-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
 .font-body {
   font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
 }

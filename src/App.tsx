@@ -4,26 +4,43 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomeView } from './components/HomeView';
 import { AboutView } from './components/AboutView';
+import { ExperienceView } from './components/ExperienceView';
 import { PortfolioView } from './components/PortfolioView';
-import { ServicesView } from './components/ServicesView';
 import { ContactView } from './components/ContactView';
-import { ProjectModal } from './components/ProjectModal';
+import { ProjectDetailView } from './components/ProjectDetailView';
 import { BookingModal } from './components/BookingModal';
 import { CVModal } from './components/CVModal';
+import { PROJECTS } from './data/portfolioData';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isCVOpen, setIsCVOpen] = useState(false);
 
-  // Sync hash navigation if user refreshes with #about or #portfolio
+  const handleOpenEmail = () => {
+    window.location.href =
+      'mailto:avina16@gmail.com?subject=Executive%20Advisory%20%26%20Leadership%20Inquiry%20%E2%80%94%20Avina%20Lloyd';
+  };
+
+  // Sync hash navigation if user refreshes with #about, #experience, #portfolio, etc.
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['about', 'portfolio', 'services', 'contact'].includes(hash)) {
+      if (hash.startsWith('project-')) {
+        const projectId = hash.replace('project-', '');
+        const found = PROJECTS.find((p) => p.id === projectId);
+        if (found) {
+          setSelectedProject(found);
+          setCurrentPage('project-detail');
+          return;
+        }
+      }
+
+      if (['about', 'experience', 'portfolio'].includes(hash)) {
+        setSelectedProject(null);
         setCurrentPage(hash as PageType);
       } else {
+        setSelectedProject(null);
         setCurrentPage('home');
       }
     };
@@ -37,18 +54,26 @@ export default function App() {
   }, []);
 
   const handleNavigate = (page: PageType) => {
+    setSelectedProject(null);
     setCurrentPage(page);
     window.location.hash = page === 'home' ? '' : page;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleSelectProject = (project: Project) => {
+    setSelectedProject(project);
+    setCurrentPage('project-detail');
+    window.location.hash = `project-${project.id}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen bg-[#f9f9f9] text-[#1a1c1c] flex flex-col font-body selection:bg-[#1a1c1c] selection:text-white">
+    <div className="min-h-screen bg-[#fbf9f6] text-[#141312] flex flex-col font-body selection:bg-[#141312] selection:text-[#fbf9f6]">
       {/* Global Fixed Header */}
       <Header
         currentPage={currentPage}
         onNavigate={handleNavigate}
-        onOpenBooking={() => setIsBookingOpen(true)}
+        onOpenBooking={handleOpenEmail}
       />
 
       {/* Main Page View Router */}
@@ -56,15 +81,23 @@ export default function App() {
         {currentPage === 'home' && (
           <HomeView
             onNavigate={handleNavigate}
-            onSelectProject={(project) => setSelectedProject(project)}
-            onOpenBooking={() => setIsBookingOpen(true)}
+            onSelectProject={handleSelectProject}
+            onOpenBooking={handleOpenEmail}
           />
         )}
 
         {currentPage === 'about' && (
           <AboutView
             onNavigate={handleNavigate}
-            onOpenBooking={() => setIsBookingOpen(true)}
+            onOpenBooking={handleOpenEmail}
+            onOpenCV={() => setIsCVOpen(true)}
+          />
+        )}
+
+        {currentPage === 'experience' && (
+          <ExperienceView
+            onNavigate={handleNavigate}
+            onOpenBooking={handleOpenEmail}
             onOpenCV={() => setIsCVOpen(true)}
           />
         )}
@@ -72,40 +105,30 @@ export default function App() {
         {currentPage === 'portfolio' && (
           <PortfolioView
             onNavigate={handleNavigate}
-            onSelectProject={(project) => setSelectedProject(project)}
-            onOpenBooking={() => setIsBookingOpen(true)}
+            onSelectProject={handleSelectProject}
+            onOpenBooking={handleOpenEmail}
           />
         )}
 
-        {currentPage === 'services' && (
-          <ServicesView onOpenBooking={() => setIsBookingOpen(true)} />
+        {currentPage === 'contact' && (
+          <ContactView onOpenBooking={handleOpenEmail} />
         )}
 
-        {currentPage === 'contact' && (
-          <ContactView onOpenBooking={() => setIsBookingOpen(true)} />
+        {currentPage === 'project-detail' && selectedProject && (
+          <ProjectDetailView
+            project={selectedProject}
+            onBack={() => handleNavigate('portfolio')}
+            onNavigate={handleNavigate}
+            onSelectProject={handleSelectProject}
+            onOpenBooking={handleOpenEmail}
+          />
         )}
       </main>
 
       {/* Global Footer */}
       <Footer
         onNavigate={handleNavigate}
-        onOpenBooking={() => setIsBookingOpen(true)}
-      />
-
-      {/* Case Study Details Modal */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-        onOpenBooking={() => {
-          setSelectedProject(null);
-          setIsBookingOpen(true);
-        }}
-      />
-
-      {/* Book A Call / Consultation Scheduler */}
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
+        onOpenBooking={handleOpenEmail}
       />
 
       {/* Curriculum Vitae Viewer / Downloader */}

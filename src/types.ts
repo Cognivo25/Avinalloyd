@@ -1,14 +1,14 @@
-export type PageType = 'home' | 'about' | 'portfolio' | 'services' | 'contact';
+export type PageType = 'home' | 'about' | 'experience' | 'portfolio' | 'contact' | 'project-detail';
 
 export type ProjectCategory =
   | 'All'
-  | 'Operations & PropTech'
-  | 'Healthcare Operations'
-  | 'Enterprise Consulting'
-  | 'Global Strategy & HR'
-  | 'Six Sigma & Quality'
-  | 'CSR & Social Impact'
-  | 'CSR & Culture';
+  | 'Entrepreneurial Ecosystems'
+  | 'Global Trade & Strategy'
+  | 'MSME Scale & Governance'
+  | 'Leadership & Community'
+  | 'Women in Leadership'
+  | 'Innovation & Technology'
+  | 'CSR & Social Impact';
 
 export interface Project {
   id: string;
@@ -26,6 +26,8 @@ export interface Project {
   featured?: boolean;
   year?: string;
   metrics?: string;
+  linkedInUrl?: string;
+  quote?: string;
 }
 
 export interface TimelineItem {
@@ -37,6 +39,8 @@ export interface TimelineItem {
   description: string;
   tags: string[];
   images?: string[];
+  highlights?: string[];
+  keyMetric?: string;
   isExpandedDefault?: boolean;
 }
 

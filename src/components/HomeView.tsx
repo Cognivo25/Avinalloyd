@@ -2,10 +2,12 @@ import React, { useRef, useState, useEffect } from 'react';
 import { PageType, Project } from '../types';
 import {
   HERO_IMAGE_SCREEN1,
-  ABOUT_ARROW_IMAGE,
-  MINI_PORTRAIT_IMAGE,
+  TRIUNE_LOGO,
+  TECHNEAT_LOGO,
   PROJECTS,
+  HERO_STREAM_IMAGES,
 } from '../data/portfolioData';
+import { ImageStreamHero } from '@/components/ui/image-stream-hero';
 
 interface HomeViewProps {
   onNavigate: (page: PageType) => void;
@@ -21,13 +23,25 @@ export const HomeView: React.FC<HomeViewProps> = ({
   const carouselRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [heroImage, setHeroImage] = useState<string>(() => {
-    return localStorage.getItem('avina_custom_hero') || HERO_IMAGE_SCREEN1;
+    const saved = typeof window !== 'undefined' ? localStorage.getItem('avina_custom_hero') : null;
+    if (saved && (saved.startsWith('data:image') || saved.startsWith('blob:'))) {
+      return saved;
+    }
+    return HERO_IMAGE_SCREEN1;
   });
 
   useEffect(() => {
+    const saved = localStorage.getItem('avina_custom_hero');
+    if (saved && !saved.startsWith('data:image') && !saved.startsWith('blob:')) {
+      localStorage.removeItem('avina_custom_hero');
+    }
     const handleStorageChange = () => {
-      const saved = localStorage.getItem('avina_custom_hero');
-      if (saved) setHeroImage(saved);
+      const current = localStorage.getItem('avina_custom_hero');
+      if (current && (current.startsWith('data:image') || current.startsWith('blob:'))) {
+        setHeroImage(current);
+      } else {
+        setHeroImage(HERO_IMAGE_SCREEN1);
+      }
     };
     window.addEventListener('storage', handleStorageChange);
     return () => window.removeEventListener('storage', handleStorageChange);
@@ -66,173 +80,249 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
   return (
     <div className="pt-24 md:pt-32 pb-24 md:pb-36 animate-fadeIn">
-      {/* 1. Hero Section */}
-      <section className="px-5 md:px-12 lg:px-20 max-w-[1280px] mx-auto mb-28 md:mb-36">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[65vh]">
-          {/* Text Content */}
-          <div className="lg:col-span-6 z-10 flex flex-col justify-center order-2 lg:order-1 pt-6 lg:pt-0">
-            {/* Stats Bar */}
-            <div className="flex gap-10 mb-8 font-mono-code text-[12px] text-[#5d5f5f]">
-              <div>
-                <span className="text-[#1a1c1c] block text-xl font-semibold mb-0.5">20+ Yrs</span>
-                <span>Executive Experience</span>
-              </div>
-              <div>
-                <span className="text-[#1a1c1c] block text-xl font-semibold mb-0.5">4x Winner</span>
-                <span>DELL Quality Audits</span>
-              </div>
-            </div>
+      {/* 1. Hero Section - Luxury Editorial Centerpiece with Dynamic Image Corridor Behind */}
+      <section className="relative px-4 sm:px-8 md:px-12 lg:px-16 w-full max-w-[1536px] mx-auto mb-24 md:mb-32 pt-2 md:pt-4 flex flex-col items-center">
+        {/* Dynamic Curved Image Stream Corridor (Full-bleed end-to-end across viewport) */}
+        <div className="absolute -top-6 sm:-top-8 left-1/2 -translate-x-1/2 w-screen max-w-[100vw] h-[460px] sm:h-[560px] md:h-[640px] lg:h-[720px] pointer-events-none opacity-90 select-none z-0 overflow-hidden">
+          <ImageStreamHero
+            images={HERO_STREAM_IMAGES}
+            cards={12}
+            speed={24}
+            axis={48}
+            path={{
+              perspective: 28,
+              cardWidth: 19,
+              cardHeight: 26,
+              cardRadius: 2.2,
+              birthHeight: 2.6,
+              exitHeight: 50,
+              railBirth: -12,
+              railExit: 48,
+              fan: 3.2,
+            }}
+            className="w-full h-full"
+          />
+        </div>
 
-            {/* Display Headline */}
-            <h1 className="font-display text-[58px] sm:text-[80px] md:text-[104px] leading-[0.92] tracking-tighter text-[#1a1c1c] mb-6 font-medium">
-              Avina Lloyd
-            </h1>
+        {/* Halo Frame & Portrait */}
+        <div className="relative z-10 w-[330px] h-[330px] sm:w-[460px] sm:h-[460px] md:w-[540px] md:h-[540px] lg:w-[620px] lg:h-[620px] mx-auto flex items-center justify-center">
+          {/* Subtle Outer Luxury Gold Halo Ring */}
+          <div className="absolute inset-0 rounded-full border border-[#c5a059]/40 shadow-[0_0_80px_rgba(197,160,89,0.14)] pointer-events-none bg-[#f9f9f9]/20 backdrop-blur-[1px]" />
+          
+          {/* Soft Warm Radial Backdrop */}
+          <div className="absolute inset-2 sm:inset-3 rounded-full bg-gradient-to-b from-[#f2ebe0]/90 via-[#eae0d2]/60 to-[#fbf9f5]/20 pointer-events-none" />
 
-            {/* Subtitle Statement */}
-            <p className="font-body text-[18px] md:text-[20px] text-[#5d5f5f] leading-relaxed max-w-lg border-l-2 border-[#1a1c1c] pl-5 py-1 mb-12">
-              — Chief Operations Officer (COO) specializing in operational optimization, strategic P&L management, Six Sigma quality frameworks, and cross-vertical scaling.
-            </p>
-
-            {/* Scroll Down Action */}
-            <button
-              onClick={scrollToAbout}
-              className="group flex items-center gap-3 font-mono-code text-[12px] text-[#5d5f5f] hover:text-[#1a1c1c] uppercase tracking-widest transition-colors w-max cursor-pointer"
-            >
-              <span className="material-symbols-outlined text-[18px] transform group-hover:translate-y-1 transition-transform">
-                arrow_downward
-              </span>
-              <span>EXPLORE EXECUTIVE PROFILE</span>
-            </button>
-          </div>
-
-          {/* Hero Portrait */}
-          <div className="lg:col-span-6 relative h-[450px] sm:h-[540px] md:h-[620px] w-full rounded-2xl overflow-hidden order-1 lg:order-2 bg-[#f0eff0] border border-[#cfc4c5]/40 shadow-md group">
+          {/* Portrait Cutout */}
+          <div className="relative w-full h-[96%] sm:h-[98%] top-[2%] sm:top-[3%] flex items-end justify-center overflow-visible pt-2 sm:pt-4">
             <img
               src={heroImage}
               alt="Avina Lloyd - Chief Operations Officer"
-              referrerPolicy="no-referrer"
-              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-102"
+              className="w-full h-full object-contain object-bottom select-none pointer-events-none z-10 drop-shadow-md"
             />
-            {/* Subtle bottom shadow gradient for contrast */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1a1c1c]/70 via-transparent to-transparent opacity-80 pointer-events-none" />
+            {/* Smooth Radial Bottom Fade */}
+            <div className="absolute -bottom-1 left-[-25%] right-[-25%] h-28 sm:h-36 md:h-44 bg-gradient-to-t from-[#fbf9f6] via-[#fbf9f6]/90 to-transparent z-20 pointer-events-none" />
+          </div>
 
-            {/* Executive Badge */}
-            <div className="absolute bottom-5 left-5 right-5 z-10 bg-[#1a1c1c]/90 backdrop-blur-md text-white px-5 py-3.5 rounded-xl border border-white/15 flex items-center justify-between shadow-lg">
-              <div>
-                <div className="font-display text-[17px] font-medium text-white tracking-tight">
-                  Avina Lloyd
-                </div>
-                <div className="font-mono-code text-[11px] text-[#e0e0e0] tracking-wider uppercase">
-                  Chief Operations Officer • Fidelitus Corp
-                </div>
-              </div>
+          {/* Hidden image upload trigger */}
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleImageUpload}
+            accept="image/*"
+            className="hidden"
+          />
+        </div>
 
-              {/* Upload / Switch Photo trigger */}
-              <div className="flex items-center gap-2">
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleImageUpload}
-                  accept="image/*"
-                  className="hidden"
-                />
-                <button
-                  onClick={() => fileInputRef.current?.click()}
-                  className="font-mono-code text-[11px] bg-white/15 hover:bg-white/25 text-white px-3 py-1.5 rounded-lg border border-white/20 transition-colors flex items-center gap-1.5 cursor-pointer"
-                  title="Upload or change hero photo"
-                >
-                  <span className="material-symbols-outlined text-[15px]">photo_camera</span>
-                  <span className="hidden sm:inline">Change Photo</span>
-                </button>
-              </div>
+          {/* Big Editorial Headline & Role */}
+        <div className="relative z-30 -mt-6 sm:-mt-8 md:-mt-10 lg:-mt-12 text-center w-full max-w-[1440px] mx-auto px-4 flex flex-col items-center">
+          <h1 className="whitespace-nowrap font-serif-luxury text-[clamp(2.2rem,6.8vw,7.6rem)] leading-[0.92] tracking-[0.06em] sm:tracking-[0.12em] md:tracking-[0.16em] text-[#141312] font-normal uppercase drop-shadow-2xs select-none">
+            AVINA &nbsp; LLOYD
+          </h1>
+
+          <div className="mt-3 sm:mt-4 md:mt-5 font-mono-code text-[11px] sm:text-[13px] md:text-[15px] tracking-[0.24em] sm:tracking-[0.32em] text-[#b3884d] uppercase font-semibold">
+            CEO, TRIUNE BUSINESS VENTURES • CFO, TECHNEAT INFO SOLUTIONS
+          </div>
+
+          <p className="font-body text-[15px] sm:text-[17px] md:text-[19px] text-[#55524e] max-w-2xl mx-auto text-center leading-relaxed mt-4 sm:mt-5 font-normal">
+            Building businesses that move markets. Creating partnerships that matter. Opening opportunities that last.
+          </p>
+        </div>
+
+        {/* 3-Column Highlights / Metrics */}
+        <div className="mt-14 md:mt-20 w-full max-w-4xl md:max-w-5xl lg:max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0 items-center text-center">
+            {/* Stat 1 */}
+            <div className="flex flex-col items-center sm:px-6 md:px-10">
+              <span className="font-serif-luxury text-[36px] sm:text-[46px] md:text-[52px] text-[#b3884d] leading-none mb-1.5 font-normal">
+                20+
+              </span>
+              <span className="font-mono-code text-[11px] sm:text-[12px] text-[#403d39] tracking-[0.18em] uppercase font-semibold">
+                YEARS
+              </span>
+              <span className="font-mono-code text-[10px] sm:text-[11px] text-[#78746d] tracking-[0.14em] uppercase mt-0.5">
+                EXECUTIVE LEADERSHIP
+              </span>
+            </div>
+
+            {/* Stat 2 */}
+            <div className="flex flex-col items-center sm:border-x sm:border-[#c5a059]/35 sm:px-6 md:px-10">
+              <span className="font-serif-luxury text-[36px] sm:text-[46px] md:text-[52px] text-[#141312] leading-none mb-1.5 font-normal">
+                4×
+              </span>
+              <span className="font-mono-code text-[11px] sm:text-[12px] text-[#403d39] tracking-[0.18em] uppercase font-semibold">
+                DELL QUALITY
+              </span>
+              <span className="font-mono-code text-[10px] sm:text-[11px] text-[#78746d] tracking-[0.14em] uppercase mt-0.5">
+                AWARD WINNER
+              </span>
+            </div>
+
+            {/* Stat 3 */}
+            <div className="flex flex-col items-center sm:px-6 md:px-10">
+              <span className="font-serif-luxury text-[26px] sm:text-[34px] md:text-[38px] text-[#b3884d] leading-none mb-1.5 sm:mt-1 font-normal tracking-[0.06em]">
+                SIX SIGMA
+              </span>
+              <span className="font-mono-code text-[11px] sm:text-[12px] text-[#403d39] tracking-[0.18em] uppercase font-semibold">
+                QUALITY & PROCESS
+              </span>
+              <span className="font-mono-code text-[10px] sm:text-[11px] text-[#78746d] tracking-[0.14em] uppercase mt-0.5">
+                EXCELLENCE
+              </span>
             </div>
           </div>
         </div>
+
+        {/* Scroll To Explore Button */}
+        <div className="mt-14 md:mt-20 flex flex-col items-center justify-center">
+          <button
+            onClick={scrollToAbout}
+            className="group flex flex-col items-center gap-1.5 font-mono-code text-[10px] sm:text-[11px] text-[#78746d] hover:text-[#141312] uppercase tracking-[0.28em] transition-colors cursor-pointer"
+          >
+            <span>SCROLL TO EXPLORE</span>
+            <span className="text-[16px] text-[#b3884d] transform group-hover:translate-y-1 transition-transform">
+              ↓
+            </span>
+          </button>
+        </div>
       </section>
 
-      {/* 2. About Bento Grid */}
+      {/* 2. Executive Overview Bento Grid */}
       <section
         id="home-about-section"
         className="px-5 md:px-12 lg:px-20 max-w-[1280px] mx-auto mb-28 md:mb-36 scroll-mt-28"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-          {/* Card 1: About Me Intro Card */}
-          <div className="lg:col-span-5 bg-[#f3f3f4] rounded-2xl p-8 md:p-12 flex flex-col justify-between border border-[#cfc4c5]/20 shadow-2xs">
+          {/* Card 1: Intro Card */}
+          <div className="lg:col-span-5 bg-[#f4f0ea]/70 rounded-2xl p-8 md:p-12 flex flex-col justify-between border border-[#cfc4c5]/30 shadow-2xs">
             <div>
-              <div className="font-mono-code text-[11px] uppercase tracking-widest text-[#5d5f5f] mb-3">
-                Executive Leadership
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#b3884d]"></span>
+                <span className="font-mono-code text-[11px] uppercase tracking-widest text-[#b3884d] font-semibold">
+                  Executive Leadership &amp; Vision
+                </span>
               </div>
-              <h2 className="font-display text-[32px] md:text-[44px] text-[#1a1c1c] font-medium mb-6">
-                Strategic Precision. Operational Scalability.
+              <h2 className="font-serif-luxury text-[30px] md:text-[38px] text-[#141312] font-normal mb-5 leading-tight">
+                Business Growth. Strategic Partnerships.
               </h2>
-              <p className="font-body text-[16px] md:text-[17px] text-[#5d5f5f] leading-relaxed mb-8">
-                As Chief Operations Officer at Fidelitus and former COO at Karthik Netralaya, I architect high-performance operating frameworks, eliminate systemic friction, and align cross-functional teams with rigorous corporate milestones.
+              <p className="font-body text-[15px] md:text-[16px] text-[#55524e] leading-relaxed mb-6">
+                CEO at Triune Business Ventures and CFO at Techneat Info Solutions. Turning relationships and market opportunities into measurable enterprise value while championing purposeful collaboration, governance, and women in leadership.
               </p>
+              
+              <div className="flex flex-wrap gap-3 pt-2">
+                <button
+                  onClick={() => onNavigate('about')}
+                  className="font-mono-code text-[11px] px-5 py-2.5 bg-[#141312] text-[#c5a059] rounded-sm hover:bg-[#22211e] transition-colors cursor-pointer uppercase tracking-wider font-medium flex items-center gap-1.5"
+                >
+                  <span>Executive Bio</span>
+                  <span>↗</span>
+                </button>
+                <button
+                  onClick={() => onNavigate('experience')}
+                  className="font-mono-code text-[11px] px-5 py-2.5 border border-[#141312]/30 text-[#141312] rounded-sm hover:bg-white transition-colors cursor-pointer uppercase tracking-wider font-medium flex items-center gap-1.5"
+                >
+                  <span>Career Track Record</span>
+                  <span>↗</span>
+                </button>
+              </div>
             </div>
 
-            {/* Abstract Arrow Visual */}
-            <div className="mt-6 pt-4 border-t border-[#cfc4c5]/20">
-              <div
-                className="w-full h-32 bg-contain bg-no-repeat bg-left opacity-60 transition-opacity hover:opacity-90"
-                style={{ backgroundImage: `url('${ABOUT_ARROW_IMAGE}')` }}
-                role="img"
-                aria-label="Abstract 3D looping arrow"
-              />
+            {/* Triune Business Ventures Logo */}
+            <div className="mt-8 pt-5 border-t border-[#c5a059]/25 flex items-center justify-start">
+              <div className="bg-white/90 backdrop-blur-sm p-4 sm:p-5 rounded-xl border border-[#c5a059]/30 shadow-xs w-full max-w-[340px] hover:border-[#c5a059]/60 hover:shadow-sm transition-all">
+                <img
+                  src={TRIUNE_LOGO}
+                  alt="Triune Business Ventures Pvt. Ltd. — A Conglomerate Company"
+                  className="w-full h-auto max-h-20 object-contain object-left"
+                />
+              </div>
             </div>
           </div>
 
           {/* Right Bento Grid */}
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-            {/* Card 2: Stat Card 120% */}
-            <div className="bg-white border border-[#cfc4c5]/30 rounded-2xl p-8 md:p-10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
-              <div className="w-12 h-12 rounded-full border border-[#cfc4c5]/60 flex items-center justify-center mb-10 text-[#1a1c1c] bg-[#f9f9f9]">
-                <span className="material-symbols-outlined text-[24px]">trending_up</span>
+            {/* Card 2: Stat Card 135% */}
+            <div className="bg-white border border-[#cfc4c5]/40 rounded-2xl p-8 md:p-10 flex flex-col justify-between hover:shadow-md transition-all duration-300">
+              <div className="inline-flex items-center gap-2 text-[#b3884d] font-mono-code text-[11px] uppercase tracking-widest font-semibold">
+                <span className="w-2 h-2 rounded-full bg-[#b3884d]"></span>
+                OPERATIONAL IMPACT
               </div>
-              <div>
-                <div className="font-display text-[64px] md:text-[76px] leading-none text-[#1a1c1c] font-medium tracking-tight mb-4">
+              <div className="my-6">
+                <div className="font-serif-luxury text-[56px] md:text-[68px] leading-none text-[#141312] font-normal tracking-tight mb-3">
                   135%
                 </div>
-                <p className="font-mono-code text-[12px] text-[#5d5f5f] leading-relaxed">
-                  Average throughput & operational turnaround gain across managed enterprise verticals
+                <p className="font-mono-code text-[12px] text-[#78746d] leading-relaxed">
+                  Average throughput &amp; operational turnaround gain across managed enterprise verticals
                 </p>
               </div>
+              <button
+                onClick={() => onNavigate('experience')}
+                className="font-mono-code text-[11px] text-[#141312] hover:text-[#b3884d] uppercase tracking-widest transition-colors inline-flex items-center gap-1 cursor-pointer font-semibold"
+              >
+                <span>View Full Experience</span>
+                <span>↗</span>
+              </button>
             </div>
 
-            {/* Card 3: Mini Portrait & Experience Points */}
+            {/* Card 3: TechNeat Logo Card & Experience Points */}
             <div className="grid grid-rows-2 gap-6 md:gap-8 h-full">
-              {/* Mini Portrait with Hover Interaction */}
+              {/* TechNeat Logo Card */}
               <div
-                onClick={() => onNavigate('about')}
-                className="bg-[#f3f3f4] rounded-2xl overflow-hidden relative group cursor-pointer min-h-[160px]"
+                onClick={() => onNavigate('experience')}
+                className="bg-white rounded-2xl p-5 sm:p-6 flex flex-col items-center justify-center relative group cursor-pointer border border-[#cfc4c5]/40 shadow-2xs hover:border-[#1473a5]/50 hover:shadow-md transition-all duration-300 min-h-[140px]"
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                  style={{ backgroundImage: `url('${MINI_PORTRAIT_IMAGE}')` }}
-                />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
-                <div className="absolute top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm">
-                  <span className="material-symbols-outlined text-[16px] text-[#1a1c1c]">
-                    arrow_outward
-                  </span>
+                <div className="w-full max-w-[190px] sm:max-w-[210px] flex items-center justify-center">
+                  <img
+                    src={TECHNEAT_LOGO}
+                    alt="TechNeat Info Solutions"
+                    className="w-full h-auto max-h-12 object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="mt-2.5 flex items-center gap-1.5 font-mono-code text-[10px] text-[#78746d] uppercase tracking-wider">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#1473a5]"></span>
+                  <span>Chief Financial Officer (CFO)</span>
+                </div>
+                <div className="absolute top-3 right-3 px-2 py-0.5 bg-[#fbf9f6] rounded-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 border border-[#cfc4c5]/50 shadow-2xs">
+                  <span className="font-mono-code text-[9px] text-[#141312] uppercase tracking-wider font-semibold">View</span>
+                  <span className="text-[10px]">↗</span>
                 </div>
               </div>
 
-              {/* Bullet Detail Card */}
-              <div className="bg-white border border-[#cfc4c5]/30 rounded-2xl p-6 md:p-7 flex flex-col justify-center space-y-4 shadow-2xs">
+              {/* Detail Card */}
+              <div className="bg-white border border-[#cfc4c5]/40 rounded-2xl p-6 md:p-7 flex flex-col justify-center space-y-4 shadow-2xs">
                 <div className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-[18px] text-[#1a1c1c] shrink-0 mt-0.5">
-                    check_circle
+                  <span className="font-mono-code text-[#b3884d] text-[12px] shrink-0 mt-0.5 font-bold">
+                    ◆
                   </span>
-                  <p className="font-body text-[13px] text-[#5d5f5f] leading-relaxed">
-                    Six Sigma trained quality practitioner driving zero-defect standards and workflow agility.
+                  <p className="font-body text-[13px] text-[#55524e] leading-relaxed">
+                    Six Sigma trained practitioner driving zero-defect standards and workflow agility across multi-crore operations.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <span className="material-symbols-outlined text-[18px] text-[#1a1c1c] shrink-0 mt-0.5">
-                    check_circle
+                  <span className="font-mono-code text-[#b3884d] text-[12px] shrink-0 mt-0.5 font-bold">
+                    ◆
                   </span>
-                  <p className="font-body text-[13px] text-[#5d5f5f] leading-relaxed">
-                    Executive steward for Fidelitus PropTech, Healthcare, Dubai consulting & Shilpa Foundation CSR.
+                  <p className="font-body text-[13px] text-[#55524e] leading-relaxed">
+                    Executive leadership for Triune Ventures, Fidelitus PropTech, Healthcare, Dubai consulting &amp; CSR.
                   </p>
                 </div>
               </div>
@@ -245,28 +335,31 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <section className="mb-28 md:mb-36 overflow-hidden">
         <div className="px-5 md:px-12 lg:px-20 max-w-[1280px] mx-auto mb-10 flex justify-between items-end">
           <div>
-            <span className="font-mono-code text-[12px] text-[#5d5f5f] flex items-center gap-2 mb-2 before:content-[''] before:w-1.5 before:h-1.5 before:bg-[#1a1c1c] before:rounded-full">
-              Strategic Portfolio
-            </span>
-            <h2 className="font-display text-[32px] md:text-[48px] font-medium text-[#1a1c1c] tracking-tight">
-              Operational Initiatives & Impact
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-[#b3884d]"></span>
+              <span className="font-mono-code text-[12px] text-[#b3884d] uppercase tracking-[0.25em] font-semibold">
+                Strategic Portfolio
+              </span>
+            </div>
+            <h2 className="font-serif-luxury text-[32px] md:text-[44px] font-normal text-[#141312] tracking-tight">
+              Operational Initiatives &amp; Impact
             </h2>
           </div>
 
-          <div className="hidden md:flex gap-3">
+          <div className="hidden md:flex gap-2.5">
             <button
               onClick={() => scrollCarousel('left')}
-              aria-label="Previous project"
-              className="w-12 h-12 rounded-full border border-[#cfc4c5] flex items-center justify-center hover:bg-[#f3f3f4] transition-colors text-[#5d5f5f] hover:text-[#1a1c1c] cursor-pointer"
+              aria-label="Previous initiative"
+              className="w-11 h-11 rounded-sm border border-[#cfc4c5]/60 flex items-center justify-center hover:bg-white transition-colors text-[#141312] font-mono-code text-[16px] cursor-pointer shadow-2xs"
             >
-              <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+              ←
             </button>
             <button
               onClick={() => scrollCarousel('right')}
-              aria-label="Next project"
-              className="w-12 h-12 rounded-full border border-[#cfc4c5] flex items-center justify-center hover:bg-[#f3f3f4] transition-colors text-[#5d5f5f] hover:text-[#1a1c1c] cursor-pointer"
+              aria-label="Next initiative"
+              className="w-11 h-11 rounded-sm border border-[#cfc4c5]/60 flex items-center justify-center hover:bg-white transition-colors text-[#141312] font-mono-code text-[16px] cursor-pointer shadow-2xs"
             >
-              <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+              →
             </button>
           </div>
         </div>
@@ -282,37 +375,33 @@ export const HomeView: React.FC<HomeViewProps> = ({
               onClick={() => onSelectProject(project)}
               className="flex-none w-[85vw] sm:w-[48vw] lg:w-[32vw] snap-center group cursor-pointer"
             >
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-[#f3f3f4] shadow-xs">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-[#f3f3f4] shadow-xs border border-[#cfc4c5]/40">
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                   style={{ backgroundImage: `url('${project.image}')` }}
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-colors duration-300" />
 
                 {/* Hover Action Button */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="w-16 h-16 bg-[#1a1c1c] text-white rounded-full flex items-center justify-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 shadow-xl">
-                    <span className="material-symbols-outlined text-[22px]">arrow_outward</span>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="px-5 py-2.5 bg-[#141312] text-[#c5a059] font-mono-code text-[11px] uppercase tracking-widest rounded-sm flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 shadow-xl border border-[#2a2825]">
+                    <span>View Case Study</span>
+                    <span>↗</span>
                   </div>
                 </div>
 
                 {/* Tags on Bottom */}
-                <div className="absolute bottom-5 left-5 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                  {project.tags.slice(0, 2).map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-white/90 backdrop-blur-md rounded-full font-body text-[11px] font-semibold text-[#1a1c1c] shadow-xs"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                <div className="absolute bottom-4 left-4 right-4 flex gap-2">
+                  <span className="px-3 py-1 bg-white/90 backdrop-blur-md rounded-sm font-mono-code text-[10px] uppercase tracking-wider text-[#141312] font-semibold shadow-xs">
+                    {project.category}
+                  </span>
                 </div>
               </div>
 
-              <h3 className="font-display text-[22px] md:text-[24px] font-medium text-[#1a1c1c] mb-1.5 group-hover:text-[#5d5f5f] transition-colors">
+              <h3 className="font-serif-luxury text-[20px] md:text-[22px] font-normal text-[#141312] mb-1.5 group-hover:text-[#b3884d] transition-colors">
                 {project.title}
               </h3>
-              <p className="font-body text-[15px] text-[#5d5f5f] leading-relaxed">
+              <p className="font-body text-[14px] text-[#55524e] leading-relaxed line-clamp-2">
                 {project.subtitle || project.description}
               </p>
             </div>
@@ -326,37 +415,36 @@ export const HomeView: React.FC<HomeViewProps> = ({
               onNavigate('portfolio');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="font-mono-code text-[12px] text-[#1a1c1c] flex items-center gap-2 hover:opacity-70 transition-opacity cursor-pointer border border-[#1a1c1c]/20 px-6 py-3 rounded-full hover:bg-neutral-100"
+            className="font-mono-code text-[11px] text-[#141312] flex items-center gap-2 hover:bg-[#141312] hover:text-[#c5a059] transition-all cursor-pointer border border-[#141312]/30 px-6 py-3 rounded-sm uppercase tracking-widest font-medium"
           >
-            <span>View all strategic initiatives</span>
-            <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+            <span>Explore All Initiatives &amp; Impact</span>
+            <span>↗</span>
           </button>
         </div>
       </section>
 
       {/* 4. CTA Consultation Banner */}
       <section className="px-5 md:px-12 lg:px-20 max-w-[1280px] mx-auto">
-        <div className="bg-[#1a1c1c] text-white rounded-[2rem] p-10 sm:p-14 md:p-20 text-center relative overflow-hidden group shadow-2xl">
-          {/* Abstract decorative background */}
-          <div className="absolute -top-1/2 -left-1/4 w-[150%] h-[200%] bg-gradient-to-br from-white/5 to-transparent rotate-12 opacity-40 pointer-events-none group-hover:rotate-35 transition-transform duration-1000" />
-
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <span className="font-mono-code text-[12px] text-white/70 uppercase tracking-widest block mb-6">
-              STRATEGIC EXECUTIVE CONSULTATION & COLLABORATION
+        <div className="bg-[#141312] text-white rounded-2xl p-10 sm:p-14 md:p-20 text-center relative overflow-hidden group shadow-2xl border border-[#2a2825]">
+          <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+            <span className="font-mono-code text-[11px] text-[#c5a059] uppercase tracking-[0.25em] block font-semibold">
+              STRATEGIC EXECUTIVE CONSULTATION &amp; COLLABORATION
             </span>
-            <h2 className="font-display text-[36px] sm:text-[48px] md:text-[60px] leading-tight text-white mb-6 font-medium tracking-tight">
-              Optimize Operations. Scale Profitability.
+            <h2 className="font-serif-luxury text-[34px] sm:text-[46px] md:text-[54px] leading-tight text-white font-normal tracking-tight">
+              Optimize Operations. Scale Enterprise Value.
             </h2>
-            <p className="font-body text-[16px] md:text-[18px] text-white/80 mb-10 max-w-lg mx-auto leading-relaxed">
-              Available for executive operations advisory, board collaboration, and organizational transformation mandates across prop-tech, healthcare, and enterprise ventures.
+            <p className="font-body text-[16px] md:text-[17px] text-white/85 max-w-lg mx-auto leading-relaxed">
+              Available for executive operations advisory, board collaboration, healthcare streamlining, and cross-border trade mandates.
             </p>
-            <button
-              onClick={onOpenBooking}
-              className="inline-flex items-center justify-center gap-2 bg-white text-[#1a1c1c] px-8 py-4 rounded-full font-mono-code text-[12px] hover:scale-105 hover:bg-neutral-100 transition-all duration-300 shadow-lg cursor-pointer"
-            >
-              <span>Schedule Advisory Call</span>
-              <span className="material-symbols-outlined text-[16px]">arrow_outward</span>
-            </button>
+            <div className="pt-2">
+              <button
+                onClick={onOpenBooking}
+                className="inline-flex items-center justify-center gap-2 bg-[#c5a059] text-[#141312] px-8 py-4 rounded-sm font-mono-code text-[11px] hover:bg-[#d6b36e] transition-all duration-300 shadow-lg cursor-pointer uppercase tracking-widest font-semibold"
+              >
+                <span>Email Avina Lloyd</span>
+                <span>↗</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
