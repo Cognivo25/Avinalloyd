@@ -27,8 +27,8 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
   return (
     <div className="pt-24 md:pt-32 pb-24 md:pb-36 animate-fadeIn">
       {/* Top Bar / Navigation */}
-      <section className="px-5 md:px-12 lg:px-20 max-w-[1440px] mx-auto mb-10">
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#c5a059]/25">
+      <section className="px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto mb-8 sm:mb-10">
+        <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 pb-5 sm:pb-6 border-b border-[#c5a059]/25">
           <button
             onClick={onBack}
             className="group inline-flex items-center gap-2 font-mono-code text-[11px] text-[#55524e] hover:text-[#141312] uppercase tracking-widest transition-colors cursor-pointer"
@@ -45,7 +45,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
             </span>
             <button
               onClick={onOpenBooking}
-              className="font-mono-code text-[11px] bg-[#141312] text-[#c5a059] hover:bg-[#22211e] px-4 py-2 rounded-sm uppercase tracking-widest transition-all duration-300 cursor-pointer flex items-center gap-1.5 font-medium"
+              className="font-mono-code text-[10px] sm:text-[11px] bg-[#141312] text-[#c5a059] hover:bg-[#22211e] px-3.5 py-2 sm:px-4 sm:py-2 rounded-sm uppercase tracking-wider sm:tracking-widest transition-all duration-300 cursor-pointer flex items-center gap-1.5 font-medium"
             >
               <span>Email Avina Lloyd</span>
               <span className="text-[12px]">↗</span>
@@ -55,10 +55,10 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
       </section>
 
       {/* Case Study Hero Header */}
-      <section className="px-5 md:px-12 lg:px-20 max-w-[1440px] mx-auto mb-12">
+      <section className="px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto mb-10 sm:mb-12">
         <div className="max-w-4xl">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <span className="px-3.5 py-1 bg-[#141312] text-[#c5a059] rounded-sm font-mono-code text-[10px] uppercase tracking-widest font-semibold">
+          <div className="inline-flex flex-wrap items-center gap-2 mb-3 sm:mb-4">
+            <span className="px-3 py-1 bg-[#141312] text-[#c5a059] rounded-sm font-mono-code text-[10px] uppercase tracking-widest font-semibold">
               {project.category}
             </span>
             {project.featured && (
@@ -68,24 +68,24 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
             )}
           </div>
 
-          <h1 className="font-serif-luxury text-[36px] sm:text-[48px] md:text-[60px] leading-[1.05] tracking-tight text-[#141312] font-normal mb-6">
+          <h1 className="font-serif-luxury text-[30px] sm:text-[44px] md:text-[60px] leading-[1.1] sm:leading-[1.05] tracking-tight text-[#141312] font-normal mb-4 sm:mb-6">
             {project.title}
           </h1>
 
           {project.subtitle && (
-            <p className="font-body text-[18px] md:text-[22px] text-[#55524e] leading-relaxed mb-8">
+            <p className="font-body text-[16px] sm:text-[19px] md:text-[22px] text-[#55524e] leading-relaxed mb-6 sm:mb-8">
               {project.subtitle}
             </p>
           )}
         </div>
 
         {/* Key Metadata Stats Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 p-6 rounded-xl bg-white/70 backdrop-blur-sm border border-[#c5a059]/25 shadow-xs mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 p-4 sm:p-6 rounded-xl bg-white/80 backdrop-blur-sm border border-[#c5a059]/25 shadow-xs mb-8 sm:mb-10">
           <div>
             <span className="font-mono-code text-[10px] text-[#78746d] uppercase tracking-wider block mb-1">
               Client / Organization
             </span>
-            <span className="font-serif-luxury text-[15px] sm:text-[16px] font-normal text-[#141312] block">
+            <span className="font-serif-luxury text-[13px] sm:text-[16px] font-normal text-[#141312] block leading-snug">
               {project.client}
             </span>
           </div>
@@ -94,7 +94,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
             <span className="font-mono-code text-[10px] text-[#78746d] uppercase tracking-wider block mb-1">
               Engagement Period
             </span>
-            <span className="font-serif-luxury text-[15px] sm:text-[16px] font-normal text-[#141312] block">
+            <span className="font-serif-luxury text-[13px] sm:text-[16px] font-normal text-[#141312] block">
               {project.year || 'Executive Mandate'}
             </span>
           </div>
@@ -103,7 +103,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
             <span className="font-mono-code text-[10px] text-[#78746d] uppercase tracking-wider block mb-1">
               Leadership Mandate
             </span>
-            <span className="font-serif-luxury text-[15px] sm:text-[16px] font-normal text-[#141312] block">
+            <span className="font-serif-luxury text-[13px] sm:text-[16px] font-normal text-[#141312] block">
               CEO / Initiative Leader
             </span>
           </div>
@@ -112,22 +112,45 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
             <span className="font-mono-code text-[10px] text-[#78746d] uppercase tracking-wider block mb-1">
               Primary Highlight
             </span>
-            <span className="font-serif-luxury text-[15px] sm:text-[16px] font-normal text-[#b3884d] block">
+            <span className="font-serif-luxury text-[13px] sm:text-[16px] font-normal text-[#b3884d] block">
               {project.metrics || 'Ecosystem Impact'}
             </span>
           </div>
         </div>
 
         {/* Main Showcase Visual */}
-        <div className="relative aspect-[16/9] md:aspect-[21/9] w-full rounded-2xl overflow-hidden shadow-lg border border-[#c5a059]/30 bg-neutral-200">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-          <div className="absolute bottom-6 left-6 right-6 text-white font-mono-code text-[12px] tracking-wider uppercase flex flex-wrap justify-between items-end gap-3">
-            <span className="bg-black/70 backdrop-blur-md px-4 py-1.5 rounded-sm border border-white/20">
+        <div className="space-y-3">
+          <div className="relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[21/9] w-full rounded-2xl overflow-hidden shadow-lg border border-[#c5a059]/30 bg-neutral-200">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+            
+            {/* Desktop Overlay Bar */}
+            <div className="hidden md:flex absolute bottom-6 left-6 right-6 text-white font-mono-code text-[12px] tracking-wider uppercase justify-between items-center gap-3">
+              <span className="bg-black/70 backdrop-blur-md px-4 py-1.5 rounded-sm border border-white/20">
+                {project.client} • {project.category}
+              </span>
+
+              {project.linkedInUrl && (
+                <a
+                  href={project.linkedInUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-[#c5a059] hover:bg-[#d6b26a] text-[#141312] font-semibold px-4 py-1.5 rounded-sm inline-flex items-center gap-1.5 transition-colors shadow-md"
+                >
+                  <span>View LinkedIn Initiative</span>
+                  <span>↗</span>
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile Caption & Action Bar (Cleanly Outside Image) */}
+          <div className="flex md:hidden flex-wrap justify-between items-center gap-2 pt-1">
+            <span className="font-mono-code text-[10px] uppercase tracking-wider text-[#78746d] bg-[#edeae4] px-2.5 py-1 rounded-sm">
               {project.client} • {project.category}
             </span>
 
@@ -136,7 +159,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                 href={project.linkedInUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="bg-[#c5a059] hover:bg-[#d6b26a] text-[#141312] font-semibold px-4 py-1.5 rounded-sm inline-flex items-center gap-1.5 transition-colors shadow-md"
+                className="bg-[#c5a059] text-[#141312] font-mono-code text-[10px] font-semibold px-3 py-1 rounded-sm inline-flex items-center gap-1 uppercase tracking-wider shadow-2xs"
               >
                 <span>View LinkedIn Initiative</span>
                 <span>↗</span>
@@ -147,24 +170,24 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
       </section>
 
       {/* Deep Dive Content Section */}
-      <section className="px-5 md:px-12 lg:px-20 max-w-[1440px] mx-auto mb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <section className="px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto mb-16 md:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
           {/* Main Narrative Column */}
-          <div className="lg:col-span-8 space-y-10">
+          <div className="lg:col-span-8 space-y-8 md:space-y-10">
             {/* Quote Banner if available */}
             {project.quote && (
-              <div className="p-8 sm:p-10 rounded-2xl bg-[#fbf9f5] border-l-4 border-[#b3884d] shadow-sm">
-                <span className="font-mono-code text-[11px] text-[#b3884d] uppercase tracking-widest font-semibold block mb-2">
+              <div className="p-6 sm:p-8 md:p-10 rounded-2xl bg-[#fbf9f5] border-l-4 border-[#b3884d] shadow-sm">
+                <span className="font-mono-code text-[10px] sm:text-[11px] text-[#b3884d] uppercase tracking-widest font-semibold block mb-2">
                   Guiding Conviction
                 </span>
-                <p className="font-serif-luxury text-[20px] sm:text-[24px] text-[#141312] italic leading-relaxed">
+                <p className="font-serif-luxury text-[17px] sm:text-[21px] md:text-[24px] text-[#141312] italic leading-relaxed">
                   "{project.quote}"
                 </p>
               </div>
             )}
 
             {/* Overview */}
-            <div className="bg-white/80 backdrop-blur-sm p-8 sm:p-10 rounded-2xl border border-[#c5a059]/25 shadow-xs">
+            <div className="bg-white/80 backdrop-blur-sm p-6 sm:p-8 md:p-10 rounded-2xl border border-[#c5a059]/25 shadow-xs">
               <span className="font-mono-code text-[11px] text-[#b3884d] uppercase tracking-widest font-semibold block mb-3">
                 Executive Overview &amp; Mandate
               </span>
@@ -289,7 +312,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
 
       {/* Related Initiatives Carousel / Gallery */}
       {relatedProjects.length > 0 && (
-        <section className="px-5 md:px-12 lg:px-20 max-w-[1440px] mx-auto pt-12 border-t border-[#c5a059]/25">
+        <section className="px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto pt-10 sm:pt-12 border-t border-[#c5a059]/25">
           <div className="flex flex-wrap justify-between items-end gap-4 mb-8">
             <div>
               <span className="font-mono-code text-[11px] text-[#b3884d] uppercase tracking-widest font-semibold block mb-1">
