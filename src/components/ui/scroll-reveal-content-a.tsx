@@ -64,75 +64,131 @@ export const ScrollRevealContentA = ({
     setScrollProgress(scrollYProgress.get ? scrollYProgress.get() : scrollYProgress.current || 0)
   })
 
+  const mobileItems = [
+    { content: contentA, number: "01" },
+    { content: contentB, number: "02" },
+    { content: contentC, number: "03" },
+  ]
+
   return (
-    <div className={cn("bg-transparent", className)} ref={ref0} {...props}>
-      <div className="max-w-[90vw] mx-auto">
-        <div className="flex w-full mx-auto relative z-20">
+    <div className={cn("bg-transparent w-full overflow-hidden", className)} {...props}>
+      {/* 1. Mobile Layout (< lg): Clean, Natural Flow with Inline Visuals */}
+      <div className="block lg:hidden px-4 sm:px-6 space-y-8">
+        {mobileItems.map((item, idx) => (
           <div
-            className={cn(centralColumnStyle, "sticky top-20 md:top-24 flex flex-col w-full items-start justify-center h-[calc(100vh-100px)]")}
+            key={idx}
+            className="bg-white p-5 sm:p-7 rounded-2xl border border-[#c5a059]/30 shadow-xs space-y-4"
           >
-            <div className="flex flex-row gap-12 md:gap-16 lg:gap-24 xl:gap-32 w-full h-full items-center">
-              <div className="lg:!w-[50vw] !w-full h-auto flex flex-col justify-center gap-8 md:gap-10">
-                <PointItem
-                  active={true}
-                  number="01"
-                  title={contentA.title}
-                  description={contentA.description}
-                  metric={contentA.metric}
-                  period={contentA.period}
-                  thresholdStart={0}
-                  thresholdEnd={0.33}
-                  scrollProgress={scrollProgress}
-                />
-                <PointItem
-                  active={true}
-                  number="02"
-                  title={contentB.title}
-                  description={contentB.description}
-                  metric={contentB.metric}
-                  period={contentB.period}
-                  thresholdStart={0.33}
-                  thresholdEnd={0.66}
-                  scrollProgress={scrollProgress}
-                />
-                <PointItem
-                  active={true}
-                  number="03"
-                  title={contentC.title}
-                  description={contentC.description}
-                  metric={contentC.metric}
-                  period={contentC.period}
-                  thresholdStart={0.66}
-                  thresholdEnd={1}
-                  scrollProgress={scrollProgress}
-                />
-              </div>
-              <div className="hidden lg:flex flex-col justify-center items-center !w-[50vw] relative h-[480px] max-h-[70vh]">
-                <Image
-                  width={contentA.image.width}
-                  height={contentA.image.height}
-                  src={contentA.image.url}
-                  alt={contentA.image.alt}
-                  className={cn(imageClass, scrollProgress >= 0 && scrollProgress <= 0.35 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none")}
-                />
-                <Image
-                  width={contentB.image.width}
-                  height={contentB.image.height}
-                  src={contentB.image.url}
-                  alt={contentB.image.alt}
-                  className={cn(imageClass, scrollProgress > 0.35 && scrollProgress <= 0.68 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none")}
-                />
-                <Image
-                  width={contentC.image.width}
-                  height={contentC.image.height}
-                  src={contentC.image.url}
-                  alt={contentC.image.alt}
-                  className={cn(imageClass, scrollProgress > 0.68 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none")}
-                />
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#cfc4c5]/25">
+              <span className="font-serif-luxury text-[22px] font-normal text-[#b3884d]">
+                {item.number}
+              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                {item.content.period && (
+                  <span className="font-mono-code text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-sm bg-[#edeae4] text-[#403d39] font-medium">
+                    {item.content.period}
+                  </span>
+                )}
+                {item.content.metric && (
+                  <span className="font-mono-code text-[10px] uppercase tracking-wide px-2.5 py-0.5 rounded-sm bg-[#b3884d]/15 text-[#8c6527] border border-[#b3884d]/30 font-semibold">
+                    {item.content.metric}
+                  </span>
+                )}
               </div>
             </div>
+
+            <div className="space-y-2">
+              <h3 className="font-serif-luxury text-[20px] sm:text-[22px] font-normal text-[#141312] leading-snug">
+                {item.content.title}
+              </h3>
+              <p className="font-body text-[14px] sm:text-[15px] text-[#55524e] leading-relaxed">
+                {item.content.description}
+              </p>
+            </div>
+
+            {/* Inline Visual for Mobile */}
+            <div className="relative aspect-[16/10] rounded-xl overflow-hidden bg-neutral-200 border border-[#cfc4c5]/40 shadow-2xs">
+              <img
+                src={item.content.image.url}
+                alt={item.content.image.alt}
+                loading="lazy"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
           </div>
-          <div className="h-[280vh]" />
+        ))}
+      </div>
+
+      {/* 2. Desktop Layout (>= lg): Interactive Sticky Scroll Reveal */}
+      <div className="hidden lg:block" ref={ref0}>
+        <div className="max-w-[1340px] mx-auto px-12 lg:px-20">
+          <div className="flex w-full mx-auto relative z-20">
+            <div
+              className={cn(centralColumnStyle, "sticky top-20 md:top-24 flex flex-col w-full items-start justify-center h-[calc(100vh-100px)]")}
+            >
+              <div className="flex flex-row gap-12 md:gap-16 lg:gap-24 xl:gap-32 w-full h-full items-center">
+                <div className="lg:!w-[50vw] !w-full h-auto flex flex-col justify-center gap-8 md:gap-10">
+                  <PointItem
+                    active={true}
+                    number="01"
+                    title={contentA.title}
+                    description={contentA.description}
+                    metric={contentA.metric}
+                    period={contentA.period}
+                    thresholdStart={0}
+                    thresholdEnd={0.33}
+                    scrollProgress={scrollProgress}
+                  />
+                  <PointItem
+                    active={true}
+                    number="02"
+                    title={contentB.title}
+                    description={contentB.description}
+                    metric={contentB.metric}
+                    period={contentB.period}
+                    thresholdStart={0.33}
+                    thresholdEnd={0.66}
+                    scrollProgress={scrollProgress}
+                  />
+                  <PointItem
+                    active={true}
+                    number="03"
+                    title={contentC.title}
+                    description={contentC.description}
+                    metric={contentC.metric}
+                    period={contentC.period}
+                    thresholdStart={0.66}
+                    thresholdEnd={1}
+                    scrollProgress={scrollProgress}
+                  />
+                </div>
+                <div className="hidden lg:flex flex-col justify-center items-center !w-[50vw] relative h-[480px] max-h-[70vh]">
+                  <Image
+                    width={contentA.image.width}
+                    height={contentA.image.height}
+                    src={contentA.image.url}
+                    alt={contentA.image.alt}
+                    className={cn(imageClass, scrollProgress >= 0 && scrollProgress <= 0.35 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none")}
+                  />
+                  <Image
+                    width={contentB.image.width}
+                    height={contentB.image.height}
+                    src={contentB.image.url}
+                    alt={contentB.image.alt}
+                    className={cn(imageClass, scrollProgress > 0.35 && scrollProgress <= 0.68 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none")}
+                  />
+                  <Image
+                    width={contentC.image.width}
+                    height={contentC.image.height}
+                    src={contentC.image.url}
+                    alt={contentC.image.alt}
+                    className={cn(imageClass, scrollProgress > 0.68 ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none")}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="h-[280vh]" />
+          </div>
         </div>
       </div>
     </div>
