@@ -367,13 +367,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
         {/* Scrollable Container */}
         <div
           ref={carouselRef}
-          className="flex gap-6 md:gap-8 px-5 md:px-12 lg:px-20 pb-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar"
+          className="flex gap-4 sm:gap-6 md:gap-8 px-4 sm:px-6 md:px-12 lg:px-20 pb-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-pl-4 sm:scroll-pl-6 md:scroll-pl-12"
         >
           {featuredProjects.map((project) => (
             <div
               key={project.id}
               onClick={() => onSelectProject(project)}
-              className="flex-none w-[85vw] sm:w-[48vw] lg:w-[32vw] snap-center group cursor-pointer"
+              className="flex-none w-[72vw] xs:w-[74vw] sm:w-[46vw] lg:w-[31vw] snap-start group cursor-pointer"
             >
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-[#f3f3f4] shadow-xs border border-[#cfc4c5]/40">
                 <div
