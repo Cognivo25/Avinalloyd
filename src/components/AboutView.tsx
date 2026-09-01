@@ -251,7 +251,7 @@ export const AboutView: React.FC<AboutViewProps> = ({
                   Triune Ventures Gold Sponsor Award
                 </h4>
                 <p className="font-body text-[13px] text-[#78746d]">
-                  Felicitation by Chairman Oswald Smith T at The RISE &amp; Tamil Women International.
+                  Felicitation by Fr. Jegath Gaspar Raj (Founder, The RISE) at The RISE &amp; Tamil Women International.
                 </p>
               </div>
             </div>

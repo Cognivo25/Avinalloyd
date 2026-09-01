@@ -87,7 +87,7 @@ export const PROJECTS: Project[] = [
     description:
       'Championing female leadership, diversity of conviction, and executive representation across global Tamil and Indian business forums with Gold Sponsorship by Triune Business Ventures.',
     fullDescription:
-      'A truly inclusive future requires women not simply to participate in important conversations, but to help shape them.\n\nAssociation with platforms such as Tamil Women International UAE and The RISE reflects a belief in the power of women coming together with clarity, courage, and purpose.\n\nAs Group CEO of Triune Business Ventures Pvt Ltd, Avina Lloyd led Triune’s Gold Sponsorship of the Tamil Women International conclave—felicitated by Chairman Oswald Smith T. The collective brought together over 30 prominent women entrepreneurs, executives, and leaders to create collaborative business pipelines and mentor emerging founders.',
+      'A truly inclusive future requires women not simply to participate in important conversations, but to help shape them.\n\nAssociation with platforms such as Tamil Women International UAE and The RISE reflects a belief in the power of women coming together with clarity, courage, and purpose.\n\nAs Group CEO of Triune Business Ventures Pvt Ltd, Avina Lloyd led Triune’s Gold Sponsorship of the Tamil Women International conclave—felicitated by Fr. Jegath Gaspar Raj (Founder, The RISE). The collective brought together over 30 prominent women entrepreneurs, executives, and leaders to create collaborative business pipelines and mentor emerging founders.',
     challenge:
       'Under-representation of women in executive decision-making, international trade delegations, and institutional corporate sponsorships.',
     solution:
@@ -374,14 +374,14 @@ export const DIGNITARY_CELEBRITY_ENGAGEMENTS: DignitaryEngagement[] = [
       'Interacting with Tamil Nadu Government Ministers and key dignitaries at the "Life & Legacy for the Next 100 Generations" pavilion during Tamizhar 4.0.',
   },
   {
-    id: 'triune-gold-sponsor-award',
-    name: 'Oswald Smith T (Chairman) & Avina Lloyd',
-    role: 'Group CEO, Triune Business Ventures / LA International',
+    id: 'fr-jegath-gaspar-felicitation',
+    name: 'Fr. Jegath Gaspar Raj & Avina Lloyd',
+    role: 'Founder, The RISE / Group CEO, Triune Business Ventures',
     event: 'The RISE Global & Tamil Women International Conclave',
     image: '/image copy.png',
     badge: 'Gold Sponsor Felicitation',
     description:
-      'Avina Lloyd receiving the official Gold Sponsorship appreciation certificate as Group CEO of Triune Business Ventures Pvt Ltd and LA International.',
+      'Avina Lloyd receiving the official Gold Sponsorship appreciation certificate from Fr. Jegath Gaspar Raj (Founder, The RISE) as Group CEO of Triune Business Ventures.',
   },
   {
     id: 'nakul-celebrity-engagement',
