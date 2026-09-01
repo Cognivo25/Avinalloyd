@@ -25,28 +25,28 @@ export const CONTACT_BANNER_BG = '/images/avina-event-rise-launch.jpg';
 export const PROJECTS: Project[] = [
   {
     id: 'cxxo-no-ceiling-summit',
-    title: 'CXXO "No Ceiling" Summit: The Audacity to Dream',
-    subtitle: 'Empowering Women Tech Founders & Executives (Kalaari Capital & TiE Women Global)',
-    client: 'CXXO, Kalaari Capital, TiE Women & AWS',
+    title: 'Attended TiE Global Summit 2024: The Audacity to Dream',
+    subtitle: 'CXXO "No Ceiling" Summit — Empowering Women Tech Founders (Kalaari Capital, TiE Women & AWS)',
+    client: 'TiE Global Summit 2024 / Kalaari Capital, CXXO & AWS',
     category: 'Women in Leadership',
-    tags: ['Women in Leadership', 'CXXO Summit', 'Kalaari Capital', 'TiE Women', 'Venture Capital', 'AWS'],
+    tags: ['TiE Global Summit 2024', 'Women in Leadership', 'CXXO Summit', 'Kalaari Capital', 'TiE Women', 'Venture Capital', 'AWS'],
     description:
-      'Engaging with top women founders, venture partners, and tech leaders at the CXXO No Ceiling Summit 2024 hosted by Kalaari Capital in partnership with AWS and Havas.',
+      'Attended the TiE Global Summit 2024 and CXXO "No Ceiling" Summit ("The Audacity to Dream") hosted by Kalaari Capital in partnership with AWS, Havas, and TiE Women, engaging with top women founders and venture partners.',
     fullDescription:
-      'The future of business and technology is being shaped by bold female founders with the audacity to dream beyond existing boundaries.\n\nAt the CXXO No Ceiling Summit 2024—hosted by Kalaari Capital in partnership with AWS, Havas, and the TiE Women Global Initiative—Avina Lloyd joined prominent women enterprise leaders, venture capitalists, and tech pioneers to discuss capital access, executive scaling, and institutional leadership.\n\nCXXO represents a vital movement aimed at dismantling systemic barriers, championing female-led innovation, and equipping high-conviction women entrepreneurs with the strategic networks and investment ecosystems required to build category-defining enterprises.',
+      'The future of business and technology is being shaped by bold female founders with the audacity to dream beyond existing boundaries.\n\nAt the TiE Global Summit 2024—attending the CXXO No Ceiling Summit ("The Audacity to Dream") hosted by Kalaari Capital in partnership with AWS, Havas, and the TiE Women Global Initiative—Avina Lloyd joined prominent women enterprise leaders, venture capitalists, and tech pioneers to discuss capital access, executive scaling, and institutional leadership.\n\nCXXO and TiE Women represent vital movements aimed at dismantling systemic barriers, championing female-led innovation, and equipping high-conviction women entrepreneurs with the strategic networks and investment ecosystems required to build category-defining enterprises.',
     challenge:
       'Structural inequities in venture capital funding and access to executive mentorship for women-led technology enterprises.',
     solution:
       'Active engagement in high-impact venture platforms, strategic founder mentorship, and institutional advocacy across global women leadership forums.',
     results: [
+      'Attended TiE Global Summit 2024 & CXXO "The Audacity to Dream" conclaves',
       'Connected with leading venture partners and emerging women tech founders',
-      'Championed institutional capital access and mentorship networks',
-      'Advanced cross-industry dialogues on female executive empowerment',
+      'Championed institutional capital access and mentorship networks for female enterprise leaders',
     ],
     image: '/images1/image.png',
     featured: true,
     year: '2024',
-    metrics: 'Women Tech & VC Leadership',
+    metrics: 'TiE Global Summit 2024',
     linkedInUrl: 'https://in.linkedin.com/in/avina-lloyd',
     quote: 'When we remove the ceiling on women\'s ambition, we unlock exponential innovation for the entire economy.',
   },
