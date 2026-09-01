@@ -1,4 +1,4 @@
-import { Project, TimelineItem, ServiceItem, EducationItem, AwardItem } from '../types';
+import { Project, TimelineItem, ServiceItem, EducationItem, AwardItem, DignitaryEngagement } from '../types';
 import avinaLloydHero from '../avina-lloyd-hero.png';
 
 export const HERO_IMAGE_SCREEN1 = avinaLloydHero;
@@ -24,22 +24,103 @@ export const CONTACT_BANNER_BG = '/images/avina-event-rise-launch.jpg';
 
 export const PROJECTS: Project[] = [
   {
+    id: 'cxxo-no-ceiling-summit',
+    title: 'CXXO "No Ceiling" Summit: The Audacity to Dream',
+    subtitle: 'Empowering Women Tech Founders & Executives (Kalaari Capital & TiE Women Global)',
+    client: 'CXXO, Kalaari Capital, TiE Women & AWS',
+    category: 'Women in Leadership',
+    tags: ['Women in Leadership', 'CXXO Summit', 'Kalaari Capital', 'TiE Women', 'Venture Capital', 'AWS'],
+    description:
+      'Engaging with top women founders, venture partners, and tech leaders at the CXXO No Ceiling Summit 2024 hosted by Kalaari Capital in partnership with AWS and Havas.',
+    fullDescription:
+      'The future of business and technology is being shaped by bold female founders with the audacity to dream beyond existing boundaries.\n\nAt the CXXO No Ceiling Summit 2024—hosted by Kalaari Capital in partnership with AWS, Havas, and the TiE Women Global Initiative—Avina Lloyd joined prominent women enterprise leaders, venture capitalists, and tech pioneers to discuss capital access, executive scaling, and institutional leadership.\n\nCXXO represents a vital movement aimed at dismantling systemic barriers, championing female-led innovation, and equipping high-conviction women entrepreneurs with the strategic networks and investment ecosystems required to build category-defining enterprises.',
+    challenge:
+      'Structural inequities in venture capital funding and access to executive mentorship for women-led technology enterprises.',
+    solution:
+      'Active engagement in high-impact venture platforms, strategic founder mentorship, and institutional advocacy across global women leadership forums.',
+    results: [
+      'Connected with leading venture partners and emerging women tech founders',
+      'Championed institutional capital access and mentorship networks',
+      'Advanced cross-industry dialogues on female executive empowerment',
+    ],
+    image: '/images1/image.png',
+    featured: true,
+    year: '2024',
+    metrics: 'Women Tech & VC Leadership',
+    linkedInUrl: 'https://in.linkedin.com/in/avina-lloyd',
+    quote: 'When we remove the ceiling on women\'s ambition, we unlock exponential innovation for the entire economy.',
+  },
+  {
+    id: 'tie-global-summit-blr',
+    title: 'TiE Global Summit BLR: Putting Entrepreneurship First',
+    subtitle: 'Convening Global Startup Ecosystems & Enterprise Leaders',
+    client: 'TiE Global Summit 2024',
+    category: 'Entrepreneurial Ecosystems',
+    tags: ['TiE Global Summit', 'Entrepreneurship', 'Global Networks', 'B2B Platforms', 'Founder Alliances'],
+    description:
+      'Participating in premier global entrepreneurship conclaves, fostering cross-border alliances, and connecting regional enterprises with international innovation hubs.',
+    fullDescription:
+      'TiE Global Summit is one of the world’s foremost gatherings of entrepreneurs, investors, policymakers, and corporate leaders.\n\nAt TiE Global Summit Bengaluru 2024—themed "Putting Entrepreneurship First"—Avina Lloyd engaged with founders, institutional investors, and global delegates to explore bilateral trade pathways, operational scaling, and startup governance.\n\nThe summit provided a collaborative platform to advocate for MSME institutionalization, technology integration, and cross-border partnerships connecting Indian innovators with global capital markets.',
+    challenge:
+      'Fostering sustainable scaling practices and institutional discipline among high-growth startup ecosystems.',
+    solution:
+      'Promoted operational governance models, Six Sigma quality standards, and cross-border trade bridges at premier international entrepreneurship forums.',
+    results: [
+      'Engaged with 1,000+ global founders, investors, and industry delegates',
+      'Facilitated bilateral dialogues connecting regional enterprises with national hubs',
+      'Reinforced operational excellence as a cornerstone of sustainable scale',
+    ],
+    image: '/images1/WhatsApp Image 2026-08-31 at 18.42.55.jpeg',
+    featured: true,
+    year: '2024',
+    metrics: 'Global Founder Alliances',
+    linkedInUrl: 'https://in.linkedin.com/in/avina-lloyd',
+    quote: 'Putting entrepreneurship first means equipping founders not just with capital, but with durable operational foundations.',
+  },
+  {
+    id: 'women-in-leadership-twi',
+    title: 'Women in Leadership & Global Collectives',
+    subtitle: 'When Women Rise Together, Communities Move Forward (Tamil Women International & The RISE)',
+    client: 'Tamil Women International UAE & Triune Business Ventures',
+    category: 'Women in Leadership',
+    tags: ['Women in Leadership', 'Global Collectives', 'Empowerment', 'Gold Sponsor', 'Triune Ventures'],
+    description:
+      'Championing female leadership, diversity of conviction, and executive representation across global Tamil and Indian business forums with Gold Sponsorship by Triune Business Ventures.',
+    fullDescription:
+      'A truly inclusive future requires women not simply to participate in important conversations, but to help shape them.\n\nAssociation with platforms such as Tamil Women International UAE and The RISE reflects a belief in the power of women coming together with clarity, courage, and purpose.\n\nAs Group CEO of Triune Business Ventures Pvt Ltd, Avina Lloyd led Triune’s Gold Sponsorship of the Tamil Women International conclave—felicitated by Chairman Oswald Smith T. The collective brought together over 30 prominent women entrepreneurs, executives, and leaders to create collaborative business pipelines and mentor emerging founders.',
+    challenge:
+      'Under-representation of women in executive decision-making, international trade delegations, and institutional corporate sponsorships.',
+    solution:
+      'Spearheaded international female executive networks, corporate Gold Sponsorship backing via Triune Business Ventures, and dedicated business exchange platforms.',
+    results: [
+      'Gold Sponsorship backing and bilateral business alliances for Tamil Women International',
+      'Expanded global visibility and collaboration for 30+ women entrepreneurs in the UAE and India',
+      'Established annual leadership forums celebrating female enterprise excellence',
+    ],
+    image: '/image.png',
+    featured: true,
+    year: '2024 - Present',
+    metrics: 'Global Women Leadership Network',
+    linkedInUrl: 'https://in.linkedin.com/in/avina-lloyd',
+    quote: 'When women rise together, they do more than create momentum. They create history.',
+  },
+  {
     id: 'ctacis-ecosystem-building',
     title: 'Entrepreneurial Ecosystem Building',
-    subtitle: 'Creating Communities That Move Beyond Networking (CTACIS 4.0)',
-    client: 'CTACIS 4.0 & Business Communities',
+    subtitle: 'Creating Communities That Move Beyond Networking (CTACIS 4.0 & Tamizhar 4.0)',
+    client: 'CTACIS 4.0 & Tamizhar 4.0 Conclaves',
     category: 'Entrepreneurial Ecosystems',
-    tags: ['Ecosystem Building', 'B2B Platforms', 'Founder Network', 'Economic Force'],
+    tags: ['Ecosystem Building', 'B2B Platforms', 'Founder Network', 'Economic Force', 'Dignitary Forums'],
     description:
-      'Bringing together 500+ entrepreneurs, business leaders, and global personalities around a shared belief that meaningful connections become an economic force.',
+      'Bringing together 500+ entrepreneurs, business leaders, Tamil Nadu government ministers, and global personalities around a shared belief that meaningful connections become an economic force.',
     fullDescription:
-      'Entrepreneurship grows stronger when businesses do not operate alone. Through business communities, B2B platforms, and entrepreneurial networks, brought together founders, business leaders, and professionals to learn, collaborate, and create opportunities together.\n\nAt CTACIS 4.0, more than 500 entrepreneurs, business leaders, and global personalities came together around a shared belief—that meaningful connections can become an ecosystem, and that an ecosystem can become an economic force.\n\nImpact is never measured only by the number of people in the room—it is measured by the conversations that continue, the trust that develops, the partnerships that emerge, and the businesses that grow because two people decided to connect.',
+      'Entrepreneurship grows stronger when businesses do not operate alone. Through business communities, B2B platforms, and entrepreneurial networks, brought together founders, business leaders, and professionals to learn, collaborate, and create opportunities together.\n\nAt CTACIS 4.0 and Tamizhar 4.0, more than 500 entrepreneurs, business leaders, state ministers, and global personalities came together around a shared belief—that meaningful connections can become an ecosystem, and that an ecosystem can become an economic force.\n\nImpact is never measured only by the number of people in the room—it is measured by the conversations that continue, the trust that develops, the partnerships that emerge, and the businesses that grow because two people decided to connect.',
     challenge:
       'Siloed entrepreneurship and transactional networking that fail to convert initial meetings into durable economic collaboration.',
     solution:
-      'Architected structured ecosystem convening frameworks focusing on post-event momentum, continuous dialogue, and bilateral business matching.',
+      'Architected structured ecosystem convening frameworks focusing on post-event momentum, continuous dialogue, and bilateral business matching with state and industry leaders.',
     results: [
-      '500+ founders and enterprise leaders convened across regional and global verticals',
+      '500+ founders, enterprise leaders, and government dignitaries convened',
       'Established high-trust recurring B2B partnership pipelines',
       'Accelerated cross-sector business alliances and peer mentoring networks',
     ],
@@ -132,33 +213,6 @@ export const PROJECTS: Project[] = [
     quote: 'Develop leaders. Leaders strengthen communities. Communities support entrepreneurs. Entrepreneurs create opportunity.',
   },
   {
-    id: 'women-in-leadership-twi',
-    title: 'Women in Leadership & Global Collectives',
-    subtitle: 'When Women Rise Together, Communities Move Forward',
-    client: 'Tamil Women International UAE',
-    category: 'Women in Leadership',
-    tags: ['Women in Leadership', 'Global Collectives', 'Empowerment', 'Inclusion'],
-    description:
-      'Championing female leadership, diversity of conviction, and executive representation across global Tamil and Indian business forums.',
-    fullDescription:
-      'A truly inclusive future requires women not simply to participate in important conversations, but to help shape them.\n\nAssociation with platforms such as Tamil Women International UAE reflects a belief in the power of women coming together with clarity, courage, and purpose.\n\nThe strength of such a collective lies not only in the number of women represented, but in the diversity of their experience, leadership, and conviction. As global Tamil communities continue to evolve, women’s voices and leadership will play an increasingly important role in shaping what comes next.\n\nBecause when women rise together, they do more than create momentum. They create history.',
-    challenge:
-      'Under-representation of women in executive decision-making, international trade delegations, and boardrooms.',
-    solution:
-      'Spearheaded international female executive networks, mentoring circles, and dedicated business exchange platforms.',
-    results: [
-      'Expanded global visibility and collaboration for women entrepreneurs in the UAE and India',
-      'Fostered cross-border mentorship and strategic capital connections for female founders',
-      'Established annual leadership forums celebrating female enterprise excellence',
-    ],
-    image: '/images/avina-event-networking-discussion.png',
-    featured: true,
-    year: '2024 - Present',
-    metrics: 'Global Women Leadership Network',
-    linkedInUrl: 'https://in.linkedin.com/in/avina-lloyd',
-    quote: 'When women rise together, they do more than create momentum. They create history.',
-  },
-  {
     id: 'tech-innovation-bts',
     title: 'Technology, Innovation & Future Thinking',
     subtitle: 'Exploring What Innovation Can Make Possible (Bengaluru Tech Summit)',
@@ -214,12 +268,63 @@ export const PROJECTS: Project[] = [
     quote: 'Behind every scalable idea must be a sustainable foundation.',
   },
   {
+    id: 'shilpa-foundation-smart-nildhana',
+    title: 'Transforming Bengaluru: Smart Nildhana & Bus Shelters',
+    subtitle: 'Modernizing Public Transit Infrastructure (Phases 1 & 3 — Shilpa Foundation)',
+    client: 'Shilpa Foundation & Bengaluru Civic Transit',
+    category: 'CSR & Social Impact',
+    tags: ['Smart City', 'Public Transport', 'Urban Infrastructure', 'Shilpa Foundation', 'Civic Impact', 'Smart Nildhana'],
+    description:
+      'Transforming Bengaluru urban transit through modern, safe, and technologically equipped #SmartNildhana bus shelters inaugurated across multiple city phases.',
+    fullDescription:
+      'Urban infrastructure directly impacts daily civic quality of life. Through the Shilpa Foundation Smart Bus Stop initiative (#SmartNildhana), spearheaded modern public transit shelters across key Bengaluru corridors.\n\nFrom Phase 1 launch to Phase 3 expansion, the initiative modernized passenger transit points with enhanced seating, safety lighting, real-time civic touchpoints, and sustainable architecture. Inaugurated in collaboration with prominent civic leaders, corporate stakeholders, and community dignitaries including Mr. Sushil Mahla and Former Mayor B. N. Manjunath Reddy, the project demonstrates how focused public-private CSR can elevate daily commuter experience across urban metropolitan hubs.',
+    challenge:
+      'Dilapidated and unsafe commuter bus shelters across high-density urban transit nodes lacking weather protection, lighting, and modern passenger amenities.',
+    solution:
+      'Architected and executed high-durability, well-lit #SmartNildhana shelters in multi-phase urban deployments in partnership with civic authorities and corporate sponsors.',
+    results: [
+      'Multi-phase deployment of modern commuter bus shelters across Bengaluru transit hubs',
+      'High-profile public-private inaugurations with civic leaders and corporate executives',
+      'Significantly enhanced commuter safety, weather protection, and urban aesthetic standards',
+    ],
+    image: 'https://img.youtube.com/vi/mQ_2GTLnKBU/maxresdefault.jpg',
+    featured: true,
+    year: '2024 - Present',
+    metrics: 'Urban Civic Transit Hubs',
+    youtubeId: 'mQ_2GTLnKBU',
+    videoUrl: 'https://youtu.be/mQ_2GTLnKBU?si=hcnczS8Y4NZsefVa',
+    videos: [
+      {
+        id: 'phase-1-launch',
+        title: "Inauguration of #SmartNildhana - Phase 1 | A New Era for Bengaluru's Public Transport",
+        youtubeId: 'mQ_2GTLnKBU',
+        url: 'https://youtu.be/mQ_2GTLnKBU?si=hcnczS8Y4NZsefVa',
+        speaker: 'Shilpa Foundation',
+      },
+      {
+        id: 'phase-3-sushil-mahla',
+        title: 'Transforming Bengaluru: Phase 3 - Smart Bus Stop Inauguration',
+        youtubeId: 'KM0NWYfNWl4',
+        url: 'https://youtu.be/KM0NWYfNWl4?si=m1gKsNMHzFoxjdUo',
+        speaker: 'Mr. Sushil Mahla',
+      },
+      {
+        id: 'phase-3-mayor',
+        title: 'Transforming Bengaluru: Phase 3 - Smart Bus Stop Inauguration',
+        youtubeId: 'QYwLy2wOk7k',
+        url: 'https://youtu.be/QYwLy2wOk7k?si=u1u7n_98M9Dnc7ky',
+        speaker: 'Former Mayor B N Manjunath Reddy',
+      },
+    ],
+    quote: 'Modern urban infrastructure begins with dignity and safety for every daily commuter.',
+  },
+  {
     id: 'shilpa-foundation-school-support',
     title: 'Community Progress & Education Infrastructure',
     subtitle: 'Creating Impact Beyond Business (Puttenahalli School Support)',
     client: 'Shilpa Foundation & LKQ India',
     category: 'CSR & Social Impact',
-    tags: ['CSR', 'Education Infrastructure', 'Shilpa Foundation', 'LKQ India'],
+    tags: ['CSR', 'Education Infrastructure', 'Shilpa Foundation', 'LKQ India', 'Youth Empowerment'],
     description:
       'Partnering with LKQ India and Shilpa Foundation to deliver educational infrastructure, sports gear, and student activity support to Puttenahalli Government High School.',
     fullDescription:
@@ -233,13 +338,144 @@ export const PROJECTS: Project[] = [
       'Supplied comprehensive sports and athletic equipment for student development',
       'Fostered sustainable community-corporate stewardship for grassroots public education',
     ],
-    image: '/images/avina-event-ribbon-cutting.png',
+    image: 'https://img.youtube.com/vi/bfnea8o8L6w/maxresdefault.jpg',
     featured: true,
     year: '2024 - Present',
     metrics: 'Educational Infrastructure Impact',
     linkedInUrl:
       'https://www.linkedin.com/posts/avinash-gowda-8b52306_lkq-india-private-limited-activity-7308050422038962176-YFmw',
+    youtubeId: 'bfnea8o8L6w',
+    videoUrl: 'https://youtu.be/bfnea8o8L6w?si=AuPToOcL-2DMg2bI',
+    videos: [
+      {
+        id: 'lkq-school-support',
+        title: "Shilpa Foundation & LKQ India's School Support Program: Empowering Education, Enriching Futures",
+        youtubeId: 'bfnea8o8L6w',
+        url: 'https://youtu.be/bfnea8o8L6w?si=AuPToOcL-2DMg2bI',
+        speaker: 'Shilpa Foundation & LKQ India',
+      },
+    ],
     quote: 'A better learning environment creates a better experience for a student, contributing to a stronger future.',
+  },
+  {
+    id: 'shilpa-foundation-softtek-shimoga',
+    title: 'MDLS Initiative: Rural School Empowerment',
+    subtitle: 'Transforming Learning Environments in Shimoga (Shilpa Foundation & Softtek India)',
+    client: 'Shilpa Foundation & Softtek India',
+    category: 'CSR & Social Impact',
+    tags: ['CSR', 'Rural Education', 'Shilpa Foundation', 'Softtek India', 'Digital Literacy', 'MDLS Initiative'],
+    description:
+      'Extending educational resources, modern classroom essentials, and learning materials to government schools across Shimoga under the MDLS initiative.',
+    fullDescription:
+      'Empowering grassroots communities starts by removing barriers to quality education in Tier-2, Tier-3, and rural regions.\n\nThrough the MDLS Initiative, Shilpa Foundation partnered with Softtek India to bring critical educational infrastructure, learning tools, and school enrichment resources to government schools in Shimoga.\n\nBy providing students and teachers with the physical and educational tools needed for academic excellence, this collaborative CSR model bridges the urban-rural opportunity gap and instills confidence in young learners across regional communities.',
+    challenge:
+      'Severe infrastructural and resource deficits in regional rural schools, constraining student learning outcomes and digital literacy opportunities.',
+    solution:
+      'Mobilized corporate CSR backing with Softtek India to systematically equip schools across Shimoga with modern furniture, educational tools, and learning materials.',
+    results: [
+      'Equipped multiple government schools across Shimoga with essential learning tools and infrastructure',
+      'Strengthened public-private CSR collaboration model between Softtek India & Shilpa Foundation',
+      'Directly empowered hundreds of rural students with improved academic and development environments',
+    ],
+    image: 'https://img.youtube.com/vi/JtWnpz-qpfU/maxresdefault.jpg',
+    featured: true,
+    year: '2024 - Present',
+    metrics: 'Regional School Empowerment',
+    youtubeId: 'JtWnpz-qpfU',
+    videoUrl: 'https://youtu.be/JtWnpz-qpfU?si=cjOEmBf7gga-L0Ba',
+    videos: [
+      {
+        id: 'softtek-shimoga',
+        title: 'MDLS Initiative: Shilpa Foundation & Softtek India Empower Schools in Shimoga',
+        youtubeId: 'JtWnpz-qpfU',
+        url: 'https://youtu.be/JtWnpz-qpfU?si=cjOEmBf7gga-L0Ba',
+        speaker: 'Shilpa Foundation & Softtek India',
+      },
+    ],
+    quote: 'Every student, regardless of geography, deserves access to an environment that fosters curiosity and growth.',
+  },
+];
+
+export const DIGNITARY_CELEBRITY_ENGAGEMENTS: DignitaryEngagement[] = [
+  {
+    id: 'k-bhagyaraj-felicitation',
+    name: 'K. Bhagyaraj',
+    role: 'Veteran Tamil Filmmaker, Director & Cultural Icon',
+    event: 'Global Tamil Awards & Foundation / The RISE Global',
+    image: '/celb/WhatsApp Image 2026-08-31 at 23.34.22 (2).jpeg',
+    badge: 'Cultural Icon & Film Legend',
+    description:
+      'Executive engagement and cultural discussion with veteran director and actor K. Bhagyaraj at the Global Tamil Awards & Foundation ceremony.',
+  },
+  {
+    id: 'minister-tn-delegation',
+    name: 'Tamil Nadu Government Dignitaries & Ministers',
+    role: 'State Leadership & Economic Council',
+    event: 'Tamizhar 4.0 Global Leadership Summit',
+    image: '/celb/WhatsApp Image 2026-08-31 at 23.34.22 (11).jpeg',
+    badge: 'Ministerial Delegation',
+    description:
+      'Interacting with Tamil Nadu Government Ministers and key dignitaries at the "Life & Legacy for the Next 100 Generations" pavilion during Tamizhar 4.0.',
+  },
+  {
+    id: 'triune-gold-sponsor-award',
+    name: 'Oswald Smith T (Chairman) & Avina Lloyd',
+    role: 'Group CEO, Triune Business Ventures / LA International',
+    event: 'The RISE Global & Tamil Women International Conclave',
+    image: '/image copy.png',
+    badge: 'Gold Sponsor Felicitation',
+    description:
+      'Avina Lloyd receiving the official Gold Sponsorship appreciation certificate as Group CEO of Triune Business Ventures Pvt Ltd and LA International.',
+  },
+  {
+    id: 'nakul-celebrity-engagement',
+    name: 'Celebrity Guest & Cultural Ambassador',
+    role: 'Indian Cinema & Youth Enterprise Advocate',
+    event: 'Tamizhar 4.0 Global Conclave',
+    image: '/celb/WhatsApp Image 2026-08-31 at 23.34.22 (12).jpeg',
+    badge: 'Celebrity Guest',
+    description:
+      'Welcoming youth cultural icons and cinema personalities championing Indian arts and youth enterprise initiatives.',
+  },
+  {
+    id: 'rise-global-leadership-conclave',
+    name: 'Global Tamil Summit Leadership Council',
+    role: 'International Trade Conveners & Organizers',
+    event: 'The RISE Global Summit',
+    image: '/celb/WhatsApp Image 2026-08-31 at 23.34.22 (7).jpeg',
+    badge: 'Global Convener',
+    description:
+      'Strategic coordination with global organizers, trade commissioners, and delegates driving the international diaspora economic agenda.',
+  },
+  {
+    id: 'women-entrepreneurship-collective',
+    name: 'The RISE Tamil Women Leaders Collective',
+    role: '30+ Women Enterprise Founders & Executives',
+    event: 'Tamil Women International UAE & India',
+    image: '/image.png',
+    badge: 'Women in Leadership',
+    description:
+      'Convening 30+ leading women entrepreneurs, corporate leaders, and founders united in driving cross-border female enterprise growth.',
+  },
+  {
+    id: 'cxxo-kalaari-summit',
+    name: 'CXXO & TiE Women Leadership Conclave',
+    role: 'Women Tech Pioneers & VC Partners',
+    event: 'CXXO No Ceiling Summit 2024 (Kalaari Capital & AWS)',
+    image: '/images1/image.png',
+    badge: 'Venture & Tech Leaders',
+    description:
+      'Participating in the high-profile CXXO No Ceiling Summit 2024 by Kalaari Capital in partnership with AWS, Havas, and TiE Women.',
+  },
+  {
+    id: 'tie-global-summit-blr',
+    name: 'TiE Global Summit Leadership',
+    role: 'Founders & Ecosystem Architects',
+    event: 'TiE Global Summit BLR 2024',
+    image: '/images1/WhatsApp Image 2026-08-31 at 18.42.55.jpeg',
+    badge: 'TiE Global BLR',
+    description:
+      'Connecting with enterprise leaders and innovators at TiE Global Summit under the theme "Putting Entrepreneurship First".',
   },
 ];
 
@@ -261,8 +497,8 @@ export const TIMELINE_EXPERIENCES: TimelineItem[] = [
     tags: ['Chief Financial Officer', 'Financial Strategy', 'Enterprise Tech', 'IoT Solutions', 'Investature'],
     images: [
       '/images/avina-event-presentation-uru.png',
+      '/images1/image.png',
       '/images/avina-event-tamizhar-summit.jpg',
-      '/images/avina-event-networking-discussion.png',
     ],
     isExpandedDefault: true,
   },
@@ -282,9 +518,9 @@ export const TIMELINE_EXPERIENCES: TimelineItem[] = [
     ],
     tags: ['Executive Leadership', 'CEO', 'Business Ventures', 'Strategic Operations', 'P&L Management'],
     images: [
+      '/image copy.png',
       '/images/avina-event-presentation-uru.png',
       '/images/avina-event-panel-stage.png',
-      '/images/avina-event-networking-discussion.png',
     ],
     isExpandedDefault: true,
   },
@@ -348,9 +584,9 @@ export const TIMELINE_EXPERIENCES: TimelineItem[] = [
     ],
     tags: ['Operations Strategy', 'Training & Development', 'Process Optimization', 'Client Relations'],
     images: [
+      '/images1/WhatsApp Image 2026-08-31 at 18.42.55.jpeg',
       '/images/avina-event-tamizhar-summit.jpg',
       '/images/avina-event-networking-discussion.png',
-      'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop',
     ],
     isExpandedDefault: false,
   },
@@ -510,36 +746,52 @@ export const SERVICES_DATA: ServiceItem[] = [
 
 export const HERO_STREAM_IMAGES = [
   {
+    src: '/image copy.png',
+    alt: 'Avina Lloyd receiving Gold Sponsor award for Triune Business Ventures',
+  },
+  {
+    src: '/images1/image.png',
+    alt: 'Avina Lloyd at CXXO No Ceiling Summit 2024 by Kalaari Capital',
+  },
+  {
+    src: '/celb/WhatsApp Image 2026-08-31 at 23.34.22 (2).jpeg',
+    alt: 'Avina Lloyd with veteran director K. Bhagyaraj',
+  },
+  {
+    src: '/image.png',
+    alt: 'Avina Lloyd with The RISE Tamil Women Entrepreneurship Collective',
+  },
+  {
+    src: '/images1/WhatsApp Image 2026-08-31 at 18.42.55.jpeg',
+    alt: 'Avina Lloyd at TiE Global Summit BLR 2024',
+  },
+  {
+    src: '/celb/WhatsApp Image 2026-08-31 at 23.34.22 (11).jpeg',
+    alt: 'Avina Lloyd with Tamil Nadu Government Ministers and Dignitaries',
+  },
+  {
+    src: '/celb/WhatsApp Image 2026-08-31 at 23.34.22 (12).jpeg',
+    alt: 'Avina Lloyd with celebrity guest at Tamizhar 4.0',
+  },
+  {
     src: '/images/avina-event-tamizhar-summit.jpg',
     alt: 'Avina Lloyd at Tamizhar 4.0 Global Leadership Summit',
   },
   {
-    src: '/images/avina-event-fidelitus-expo.png',
-    alt: 'Avina Lloyd and leadership team at Fidelitus Corp Expo pavilion',
-  },
-  {
-    src: '/images/avina-event-ribbon-cutting.png',
-    alt: 'Avina Lloyd leading project ribbon cutting and inauguration ceremony',
-  },
-  {
     src: '/images/avina-event-award-rise.png',
-    alt: 'Avina Lloyd receiving executive award and felicitation at The Rise B2B Sangamam',
+    alt: 'Avina Lloyd receiving executive award at The Rise B2B Sangamam',
   },
   {
     src: '/images/avina-event-presentation-uru.png',
-    alt: 'Avina Lloyd delivering keynote presentation on operations and consulting',
+    alt: 'Avina Lloyd delivering keynote presentation on operations',
+  },
+  {
+    src: '/celb/WhatsApp Image 2026-08-31 at 23.34.22 (7).jpeg',
+    alt: 'Avina Lloyd with leadership council at The RISE Global',
   },
   {
     src: '/images/avina-event-rise-launch.jpg',
     alt: 'Avina Lloyd with leadership delegation at The Rise Seventeen UAE launch',
-  },
-  {
-    src: '/images/avina-event-panel-stage.png',
-    alt: 'Avina Lloyd participating in executive leadership panel on stage',
-  },
-  {
-    src: '/images/avina-event-networking-discussion.png',
-    alt: 'Avina Lloyd engaging in strategic executive networking and discussion',
   },
 ];
 

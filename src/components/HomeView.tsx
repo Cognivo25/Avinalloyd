@@ -6,6 +6,7 @@ import {
   TECHNEAT_LOGO,
   PROJECTS,
   HERO_STREAM_IMAGES,
+  DIGNITARY_CELEBRITY_ENGAGEMENTS,
 } from '../data/portfolioData';
 import { ImageStreamHero } from '@/components/ui/image-stream-hero';
 
@@ -21,6 +22,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onOpenBooking,
 }) => {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const dignitaryCarouselRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [heroImage, setHeroImage] = useState<string>(() => {
     const saved = typeof window !== 'undefined' ? localStorage.getItem('avina_custom_hero') : null;
@@ -69,6 +71,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
     }
   };
 
+  const scrollDignitaryCarousel = (direction: 'left' | 'right') => {
+    if (dignitaryCarouselRef.current) {
+      const scrollAmount = direction === 'left' ? -380 : 380;
+      dignitaryCarouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('home-about-section');
     if (aboutSection) {
@@ -76,7 +85,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
     }
   };
 
-  const featuredProjects = PROJECTS.slice(0, 3);
+  const featuredProjects = PROJECTS.slice(0, 4);
 
   return (
     <div className="pt-24 md:pt-32 pb-24 md:pb-36 animate-fadeIn">
@@ -331,7 +340,106 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 3. Latest Works Horizontal Scroll */}
+      {/* 3. Celebrity & Dignitary Engagements Luxury Showcase */}
+      <section className="mb-28 md:mb-36 overflow-hidden">
+        <div className="px-5 md:px-12 lg:px-20 max-w-[1280px] mx-auto mb-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-[#b3884d]"></span>
+              <span className="font-mono-code text-[12px] text-[#b3884d] uppercase tracking-[0.25em] font-semibold">
+                High-Profile Engagements &amp; Summits
+              </span>
+            </div>
+            <h2 className="font-serif-luxury text-[32px] md:text-[44px] font-normal text-[#141312] tracking-tight">
+              Dignitaries, Ministers &amp; Industry Icons
+            </h2>
+            <p className="font-body text-[14px] sm:text-[16px] text-[#78746d] mt-2 max-w-2xl">
+              Fostering bilateral ties, policy dialogues, and high-impact partnerships with state ministers, cultural icons, and enterprise leaders.
+            </p>
+          </div>
+
+          <div className="hidden md:flex gap-2.5 shrink-0">
+            <button
+              onClick={() => scrollDignitaryCarousel('left')}
+              aria-label="Previous dignitary engagement"
+              className="w-11 h-11 rounded-sm border border-[#cfc4c5]/60 flex items-center justify-center hover:bg-white transition-colors text-[#141312] font-mono-code text-[16px] cursor-pointer shadow-2xs"
+            >
+              ←
+            </button>
+            <button
+              onClick={() => scrollDignitaryCarousel('right')}
+              aria-label="Next dignitary engagement"
+              className="w-11 h-11 rounded-sm border border-[#cfc4c5]/60 flex items-center justify-center hover:bg-white transition-colors text-[#141312] font-mono-code text-[16px] cursor-pointer shadow-2xs"
+            >
+              →
+            </button>
+          </div>
+        </div>
+
+        {/* Dignitary Scrollable Container */}
+        <div
+          ref={dignitaryCarouselRef}
+          className="flex gap-4 sm:gap-6 md:gap-8 px-4 sm:px-6 md:px-12 lg:px-20 pb-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-pl-4 sm:scroll-pl-6 md:scroll-pl-12"
+        >
+          {DIGNITARY_CELEBRITY_ENGAGEMENTS.map((item) => (
+            <div
+              key={item.id}
+              className="flex-none w-[78vw] xs:w-[76vw] sm:w-[50vw] md:w-[42vw] lg:w-[32vw] snap-start group bg-white rounded-2xl border border-[#cfc4c5]/40 shadow-xs hover:shadow-xl hover:border-[#c5a059]/40 transition-all duration-300 overflow-hidden flex flex-col justify-between"
+            >
+              <div>
+                <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+                  {item.badge && (
+                    <div className="absolute top-3 left-3">
+                      <span className="px-3 py-1 bg-[#141312]/90 backdrop-blur-md text-[#c5a059] border border-[#c5a059]/30 rounded-sm font-mono-code text-[10px] uppercase tracking-wider font-semibold shadow-xs">
+                        {item.badge}
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="absolute bottom-3 left-3 right-3 text-white font-mono-code text-[10px] uppercase tracking-wider">
+                    <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-sm border border-white/10 inline-block">
+                      {item.event}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-6">
+                  <h3 className="font-serif-luxury text-[20px] sm:text-[22px] font-normal text-[#141312] mb-1 group-hover:text-[#b3884d] transition-colors leading-snug">
+                    {item.name}
+                  </h3>
+                  <div className="font-mono-code text-[11px] text-[#b3884d] uppercase tracking-wide font-medium mb-3">
+                    {item.role}
+                  </div>
+                  {item.description && (
+                    <p className="font-body text-[13px] sm:text-[14px] text-[#55524e] leading-relaxed">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="px-6 pb-6 pt-0 border-t border-[#cfc4c5]/25 flex items-center justify-between mt-3 pt-3">
+                <span className="font-mono-code text-[10px] text-[#78746d] uppercase tracking-wider">
+                  Official Delegation
+                </span>
+                <span className="font-mono-code text-[11px] text-[#141312] group-hover:text-[#b3884d] font-semibold">
+                  Summit Record ↗
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. Latest Works Horizontal Scroll */}
       <section className="mb-28 md:mb-36 overflow-hidden">
         <div className="px-5 md:px-12 lg:px-20 max-w-[1280px] mx-auto mb-10 flex justify-between items-end">
           <div>
@@ -423,7 +531,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 4. CTA Consultation Banner */}
+      {/* 5. CTA Consultation Banner */}
       <section className="px-5 md:px-12 lg:px-20 max-w-[1280px] mx-auto">
         <div className="bg-[#141312] text-white rounded-2xl p-10 sm:p-14 md:p-20 text-center relative overflow-hidden group shadow-2xl border border-[#2a2825]">
           <div className="relative z-10 max-w-2xl mx-auto space-y-6">

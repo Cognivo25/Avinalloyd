@@ -6,7 +6,6 @@ import {
   AWARDS_DATA,
   PROMO_BG_IMAGE,
 } from '../data/portfolioData';
-import ScrollRevealContentA, { ItemContent } from '@/src/components/ui/scroll-reveal-content-a';
 
 interface ExperienceViewProps {
   onNavigate: (page: PageType) => void;
@@ -14,74 +13,124 @@ interface ExperienceViewProps {
   onOpenCV: () => void;
 }
 
+type TimelineFilter = 'All' | 'C-Suite' | 'Operations' | 'Global';
+
 export const ExperienceView: React.FC<ExperienceViewProps> = ({
   onNavigate,
   onOpenBooking,
   onOpenCV,
 }) => {
-  const [expandedItem, setExpandedItem] = useState<string | null>('techneat-cfo-exp');
+  const [activeMandateIndex, setActiveMandateIndex] = useState(0);
+  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({
+    'techneat-cfo-exp': true,
+    'triune-ceo-exp': true,
+  });
+  const [activeFilter, setActiveFilter] = useState<TimelineFilter>('All');
 
   const toggleExpand = (id: string) => {
-    setExpandedItem((prev) => (prev === id ? null : id));
+    setExpandedItems((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const handleExpandAll = (expand: boolean) => {
+    const newState: Record<string, boolean> = {};
+    TIMELINE_EXPERIENCES.forEach((item) => {
+      newState[item.id] = expand;
+    });
+    setExpandedItems(newState);
   };
 
   const experienceMetrics = [
-    { label: 'CFO & Tech Strategy', value: 'TechNeat', desc: 'Financial leadership & sustainable scale' },
+    { label: 'CFO & Tech Strategy', value: 'TechNeat', desc: 'Financial leadership & ESG models' },
     { label: 'Venture Leadership', value: 'CEO', desc: 'Triune Business Ventures scaling' },
-    { label: 'Process Excellence', value: 'Six Sigma', desc: 'DMAIC & zero-defect methodologies' },
+    { label: 'Operational Turnaround', value: '135%', desc: 'Throughput gain across multi-verticals' },
     { label: 'Quality Recognition', value: '4× Awards', desc: 'Dell Global Best Quality Audits' },
   ];
 
-  // Featured 3 Career Pillars for the Scroll Reveal Component
-  const scrollContentA: ItemContent = {
-    title: 'TechNeat Info Solutions — Chief Financial Officer (CFO)',
-    description:
-      'Providing financial, governance, and strategic leadership behind a high-growth enterprise technology firm developing digital transformation, IoT, and sustainability solutions including the Investature Financial Emission Calculator.',
-    role: 'Chief Financial Officer',
-    period: 'Present',
-    metric: 'Sustainable Growth & Capital Strategy',
-    image: {
-      url: '/images/avina-event-presentation-uru.png',
-      width: 800,
-      height: 600,
-      alt: 'Avina Lloyd leading financial strategy and enterprise technology roadmap',
+  // Top 3 Featured Executive Mandates
+  const featuredMandates = [
+    {
+      id: 'techneat-cfo',
+      number: '01',
+      title: 'TechNeat Info Solutions',
+      role: 'Chief Financial Officer (CFO)',
+      period: 'Present',
+      metric: 'Sustainable Growth & Capital Strategy',
+      badge: 'C-Suite Executive',
+      description:
+        'Providing financial, governance, and strategic leadership behind an enterprise technology firm developing automation, IoT, and sustainability solutions (Investature Financial Emission Calculator).',
+      deliverables: [
+        'Supporting responsible scaling and financial discipline across international tech expansion',
+        'Aligning capital allocation, cash-flow models, and commercialization strategies for digital products',
+        'Championing sustainability-aligned financial solutions and enterprise ESG transparency',
+      ],
+      image: '/images/avina-event-presentation-uru.png',
+      imageAlt: 'Avina Lloyd leading financial strategy and enterprise technology roadmap',
+      tags: ['Chief Financial Officer', 'Financial Strategy', 'Enterprise Tech', 'IoT Solutions', 'Investature'],
     },
-  };
+    {
+      id: 'triune-ceo',
+      number: '02',
+      title: 'Triune Business Ventures Pvt Ltd',
+      role: 'Chief Executive Officer (CEO)',
+      period: 'Jun 2025 - Present',
+      metric: 'Enterprise Venture Scale',
+      badge: 'Group CEO',
+      description:
+        'Steering strategic direction, cross-industry corporate expansion, governance, and organizational performance as CEO of a conglomerate enterprise.',
+      deliverables: [
+        'Architecting multi-vertical venture operations and corporate governance models',
+        'Orchestrating P&L strategies, investor relations, and capital deployment',
+        'Instituting high-accountability executive leadership practices across enterprise teams',
+      ],
+      image: '/image copy.png',
+      imageAlt: 'Avina Lloyd receiving Gold Sponsor award as Group CEO of Triune Business Ventures',
+      tags: ['Executive Leadership', 'CEO', 'Business Ventures', 'Strategic Operations', 'P&L Management'],
+    },
+    {
+      id: 'fidelitus-coo',
+      number: '03',
+      title: 'Fidelitus Corp & Karthik Netralaya',
+      role: 'Chief Operating Officer (COO)',
+      period: '2021 - 2025',
+      metric: '135% Turnaround Gain',
+      badge: 'Operations Transformation',
+      description:
+        'Spearheaded multi-vertical operations across commercial leasing, PMO, facility administration, and healthcare empanelments, delivering a 135% throughput turnaround and 45% outpatient wait reduction.',
+      deliverables: [
+        'Established unified ERP & CRM operating workflows across all business divisions',
+        'Achieved 100% regulatory audit compliance across government empanelments (CGHS, ECHS)',
+        'Overhauled corporate governance, financial budgeting, and SLA compliance cadences',
+      ],
+      image: '/images/avina-event-fidelitus-expo.png',
+      imageAlt: 'Avina Lloyd leading executive operations and institutional transformation',
+      tags: ['COO', 'Healthcare Operations', 'PropTech PMO', 'Quality Systems', 'Six Sigma'],
+    },
+  ];
 
-  const scrollContentB: ItemContent = {
-    title: 'Triune Business Ventures — Chief Executive Officer (CEO)',
-    description:
-      'Steering multi-vertical venture operations, cross-industry corporate expansion, governance, and organizational performance across India and international markets.',
-    role: 'Chief Executive Officer',
-    period: '2025 - Present',
-    metric: 'Enterprise Venture Scale',
-    image: {
-      url: '/images/avina-event-panel-stage.png',
-      width: 800,
-      height: 600,
-      alt: 'Avina Lloyd speaking at business leadership forum',
-    },
-  };
+  const currentMandate = featuredMandates[activeMandateIndex];
 
-  const scrollContentC: ItemContent = {
-    title: 'Fidelitus Corp & Karthik Netralaya — Chief Operating Officer',
-    description:
-      'Spearheaded multi-vertical operations across commercial leasing, PMO, and healthcare administration, delivering a 135% throughput turnaround and 45% reduction in patient wait times.',
-    role: 'Chief Operating Officer',
-    period: '2021 - 2025',
-    metric: '135% Turnaround Gain',
-    image: {
-      url: '/images/avina-event-fidelitus-expo.png',
-      width: 800,
-      height: 600,
-      alt: 'Avina Lloyd leading executive operations and institutional transformation',
-    },
-  };
+  // Filtered list of timeline items
+  const filteredTimeline = TIMELINE_EXPERIENCES.filter((item) => {
+    if (activeFilter === 'All') return true;
+    if (activeFilter === 'C-Suite') {
+      return item.role.includes('Chief') || item.role.includes('CEO') || item.role.includes('CFO') || item.role.includes('COO');
+    }
+    if (activeFilter === 'Operations') {
+      return item.role.includes('Operations') || item.role.includes('Quality') || item.role.includes('Administration');
+    }
+    if (activeFilter === 'Global') {
+      return item.location.includes('International') || item.location.includes('Dubai') || item.tags.includes('Dubai UAE') || item.tags.includes('Investature');
+    }
+    return true;
+  });
 
   return (
-    <div className="pt-20 sm:pt-24 md:pt-32 pb-20 sm:pb-24 md:pb-36 animate-fadeIn overflow-x-hidden">
-      {/* 1. Header & Metric Highlights */}
-      <section className="px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1280px] mx-auto mb-14 md:mb-24">
+    <div className="pt-20 sm:pt-24 md:pt-32 pb-20 sm:pb-24 md:pb-36 animate-fadeIn">
+      {/* 1. Header & Key Metric Highlights */}
+      <section className="px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1280px] mx-auto mb-14 md:mb-20">
         <div className="max-w-4xl">
           <div className="inline-flex items-center gap-2 mb-3 sm:mb-4">
             <span className="w-2 h-2 rounded-full bg-[#b3884d]" />
@@ -95,7 +144,7 @@ export const ExperienceView: React.FC<ExperienceViewProps> = ({
           </h1>
 
           <p className="font-body text-[15px] sm:text-[18px] md:text-[20px] text-[#55524e] leading-relaxed mb-6 sm:mb-8 max-w-3xl">
-            Two decades directing high-stakes operations, steering P&amp;L outcomes, instituting Six Sigma quality rigor, and building scalable organizational systems across enterprise ventures, PropTech, healthcare, and global trade corridors.
+            Two decades directing enterprise operations, steering P&amp;L outcomes, instituting Six Sigma quality rigor, and building scalable organizational systems across enterprise ventures, PropTech, healthcare, and global trade corridors.
           </p>
 
           <div className="flex flex-col xs:flex-row sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-1">
@@ -138,53 +187,207 @@ export const ExperienceView: React.FC<ExperienceViewProps> = ({
         </div>
       </section>
 
-      {/* 2. Interactive Scroll Reveal Section */}
-      <section className="mb-16 md:mb-32 overflow-visible">
-        <div className="px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1340px] mx-auto mb-6">
+      {/* 2. Interactive Flagship Leadership Mandates Showcase */}
+      <section className="mb-20 md:mb-28 px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1280px] mx-auto">
+        <div className="mb-8">
           <div className="inline-flex items-center gap-2 mb-2">
             <span className="w-2 h-2 rounded-full bg-[#b3884d]"></span>
             <span className="font-mono-code text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[#b3884d] font-semibold">
-              FEATURED LEADERSHIP PHASES
+              FLAGSHIP EXECUTIVE PHASES
             </span>
           </div>
           <h2 className="font-serif-luxury text-[26px] sm:text-[36px] md:text-[44px] font-normal text-[#141312] tracking-tight">
-            High-Impact Executive Mandates
+            High-Impact Leadership Mandates
           </h2>
-          <p className="font-body text-[14px] sm:text-[16px] text-[#78746d] mt-2 max-w-2xl">
-            Review the core operational transformations, turnaround outcomes, and leadership visuals.
+          <p className="font-body text-[14px] sm:text-[16px] text-[#78746d] mt-1.5 max-w-2xl">
+            Select a mandate below to inspect executive scope, deliverables, and photographic records.
           </p>
         </div>
 
-        <ScrollRevealContentA
-          contentA={scrollContentA}
-          contentB={scrollContentB}
-          contentC={scrollContentC}
-        />
+        {/* Mandate Tab Selectors */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 mb-6">
+          {featuredMandates.map((m, idx) => {
+            const isSelected = activeMandateIndex === idx;
+            return (
+              <button
+                key={m.id}
+                onClick={() => setActiveMandateIndex(idx)}
+                className={`text-left p-4 sm:p-5 rounded-xl border transition-all duration-300 cursor-pointer flex flex-col justify-between gap-3 ${
+                  isSelected
+                    ? 'bg-[#141312] text-white border-[#141312] shadow-md ring-1 ring-[#c5a059]/40'
+                    : 'bg-white text-[#141312] border-[#cfc4c5]/40 hover:border-[#c5a059]/40 hover:bg-[#faf8f5]'
+                }`}
+              >
+                <div className="flex items-center justify-between w-full">
+                  <span
+                    className={`font-mono-code text-[11px] font-bold ${
+                      isSelected ? 'text-[#c5a059]' : 'text-[#b3884d]'
+                    }`}
+                  >
+                    {m.number}
+                  </span>
+                  <span
+                    className={`font-mono-code text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-sm ${
+                      isSelected ? 'bg-white/10 text-white' : 'bg-[#edeae4] text-[#403d39]'
+                    }`}
+                  >
+                    {m.period}
+                  </span>
+                </div>
+
+                <div>
+                  <h3
+                    className={`font-serif-luxury text-[17px] sm:text-[18px] font-normal leading-snug ${
+                      isSelected ? 'text-white' : 'text-[#141312]'
+                    }`}
+                  >
+                    {m.role}
+                  </h3>
+                  <p
+                    className={`font-body text-[13px] mt-1 line-clamp-1 ${
+                      isSelected ? 'text-white/70' : 'text-[#78746d]'
+                    }`}
+                  >
+                    {m.title}
+                  </p>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Selected Mandate Showcase Card */}
+        <div className="bg-white rounded-2xl border border-[#c5a059]/35 shadow-lg p-6 sm:p-8 md:p-10 transition-all duration-300">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="space-y-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-3 py-1 bg-[#141312] text-[#c5a059] font-mono-code text-[10px] uppercase tracking-widest rounded-sm font-semibold">
+                    {currentMandate.badge}
+                  </span>
+                  <span className="px-3 py-1 bg-[#b3884d]/15 text-[#8c6527] border border-[#b3884d]/30 font-mono-code text-[10px] uppercase tracking-wider rounded-sm font-semibold">
+                    {currentMandate.metric}
+                  </span>
+                </div>
+
+                <h3 className="font-serif-luxury text-[26px] sm:text-[32px] text-[#141312] font-normal leading-tight">
+                  {currentMandate.role}
+                </h3>
+                <div className="font-mono-code text-[12px] text-[#b3884d] uppercase tracking-wide font-medium">
+                  {currentMandate.title} • {currentMandate.period}
+                </div>
+              </div>
+
+              <p className="font-body text-[15px] sm:text-[16px] text-[#55524e] leading-relaxed">
+                {currentMandate.description}
+              </p>
+
+              {/* Key Deliverables */}
+              <div className="space-y-3 pt-2">
+                <div className="font-mono-code text-[11px] uppercase tracking-widest text-[#141312] font-semibold flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#b3884d]" />
+                  Key Strategic Deliverables
+                </div>
+                <div className="space-y-2.5">
+                  {currentMandate.deliverables.map((del, dIdx) => (
+                    <div key={dIdx} className="flex items-start gap-3">
+                      <span className="font-mono-code text-[#b3884d] text-[13px] shrink-0 mt-0.5 font-bold">
+                        ◆
+                      </span>
+                      <p className="font-body text-[14px] sm:text-[15px] text-[#403d39] leading-relaxed">
+                        {del}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tag badging */}
+              <div className="flex flex-wrap gap-2 pt-2">
+                {currentMandate.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="font-mono-code text-[10px] px-3 py-1 bg-[#faf8f5] text-[#403d39] rounded-sm border border-[#cfc4c5]/40 uppercase tracking-wider font-medium"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Showcase Visual */}
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-200 border border-[#c5a059]/30 shadow-md group">
+                <img
+                  src={currentMandate.image}
+                  alt={currentMandate.imageAlt}
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <span className="font-mono-code text-[11px] text-white tracking-wider uppercase">
+                    {currentMandate.title}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* 3. Comprehensive Career Roadmap Timeline */}
-      <section className="mb-16 md:mb-32 px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1200px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-10 pb-5 sm:pb-6 border-b border-[#c5a059]/20 gap-3 sm:gap-4">
+      {/* 3. Comprehensive Chronological Career Roadmap */}
+      <section className="mb-20 md:mb-28 px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1280px] mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 pb-5 border-b border-[#c5a059]/20 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 mb-1.5 sm:mb-2">
+            <div className="inline-flex items-center gap-2 mb-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#141312]" />
               <span className="font-mono-code text-[11px] uppercase tracking-[0.2em] text-[#78746d]">
                 Chronological Career Roadmap
               </span>
             </div>
-            <h2 className="font-serif-luxury text-[26px] sm:text-[36px] md:text-[44px] font-normal text-[#141312] tracking-tight">
+            <h2 className="font-serif-luxury text-[28px] sm:text-[36px] md:text-[44px] font-normal text-[#141312] tracking-tight">
               All Positions of Leadership
             </h2>
           </div>
 
-          <p className="font-mono-code text-[11px] sm:text-[12px] text-[#78746d] max-w-xs text-left md:text-right">
-            Click any position to review mandate scope, key deliverables, and leadership visuals.
-          </p>
+          {/* Quick Actions & Category Filters */}
+          <div className="flex flex-wrap items-center gap-2">
+            {(['All', 'C-Suite', 'Operations', 'Global'] as TimelineFilter[]).map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-3.5 py-1.5 rounded-full font-mono-code text-[11px] uppercase tracking-wider transition-colors cursor-pointer ${
+                  activeFilter === filter
+                    ? 'bg-[#141312] text-white shadow-xs'
+                    : 'bg-white border border-[#cfc4c5]/60 text-[#141312] hover:bg-[#faf8f5]'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+
+            <div className="hidden sm:flex items-center gap-2 pl-2 border-l border-[#cfc4c5]/40">
+              <button
+                onClick={() => handleExpandAll(true)}
+                className="font-mono-code text-[10px] text-[#78746d] hover:text-[#141312] uppercase tracking-wider underline cursor-pointer"
+              >
+                Expand All
+              </button>
+              <span className="text-[#cfc4c5]">/</span>
+              <button
+                onClick={() => handleExpandAll(false)}
+                className="font-mono-code text-[10px] text-[#78746d] hover:text-[#141312] uppercase tracking-wider underline cursor-pointer"
+              >
+                Collapse All
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Timeline Items */}
+        {/* Timeline Items List */}
         <div className="space-y-4 sm:space-y-6">
-          {TIMELINE_EXPERIENCES.map((item, index) => {
-            const isExpanded = expandedItem === item.id || (expandedItem === null && index === 0);
+          {filteredTimeline.map((item, index) => {
+            const isExpanded = !!expandedItems[item.id];
             const hasImages = item.images && item.images.length > 0;
 
             return (
@@ -192,7 +395,7 @@ export const ExperienceView: React.FC<ExperienceViewProps> = ({
                 key={item.id}
                 className={`rounded-2xl transition-all duration-300 border ${
                   isExpanded
-                    ? 'bg-white border-[#c5a059]/50 shadow-lg ring-1 ring-[#c5a059]/20'
+                    ? 'bg-white border-[#c5a059]/50 shadow-md ring-1 ring-[#c5a059]/20'
                     : 'bg-[#fbf9f6] border-[#cfc4c5]/40 hover:bg-white hover:border-[#cfc4c5]/80 hover:shadow-xs'
                 }`}
               >
@@ -247,7 +450,7 @@ export const ExperienceView: React.FC<ExperienceViewProps> = ({
                     </div>
 
                     <span className="md:hidden font-mono-code text-[10px] uppercase tracking-wider text-[#78746d]">
-                      {isExpanded ? 'Collapse Details' : 'View Mandate & Records'}
+                      {isExpanded ? 'Collapse' : 'View Scope'}
                     </span>
 
                     <div
@@ -352,7 +555,7 @@ export const ExperienceView: React.FC<ExperienceViewProps> = ({
       </section>
 
       {/* 4. Education, Six Sigma & Honors */}
-      <section className="mb-16 md:mb-32 px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1200px] mx-auto">
+      <section className="mb-20 md:mb-28 px-4 sm:px-6 md:px-12 lg:px-20 max-w-[1280px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Education & Credentials */}
           <div className="bg-white rounded-2xl p-5 sm:p-8 md:p-10 border border-[#cfc4c5]/40 shadow-2xs">

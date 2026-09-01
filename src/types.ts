@@ -10,6 +10,14 @@ export type ProjectCategory =
   | 'Innovation & Technology'
   | 'CSR & Social Impact';
 
+export interface ProjectVideo {
+  id: string;
+  title: string;
+  youtubeId: string;
+  url: string;
+  speaker?: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -28,6 +36,9 @@ export interface Project {
   metrics?: string;
   linkedInUrl?: string;
   quote?: string;
+  youtubeId?: string;
+  videoUrl?: string;
+  videos?: ProjectVideo[];
 }
 
 export interface TimelineItem {
@@ -68,13 +79,13 @@ export interface ServiceItem {
   iconName: string;
 }
 
-export interface BookingFormData {
+export interface DignitaryEngagement {
+  id: string;
   name: string;
-  email: string;
-  serviceType: string;
-  budgetRange: string;
-  preferredDate: string;
-  timeSlot: string;
-  message: string;
+  role: string;
+  event: string;
+  image: string;
+  description?: string;
+  badge?: string;
 }
 

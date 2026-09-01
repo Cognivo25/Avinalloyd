@@ -46,19 +46,31 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           <span className="material-symbols-outlined text-[20px]">close</span>
         </button>
 
-        {/* Hero Image */}
-        <div className="relative aspect-[16/9] w-full bg-[#f3f3f4] overflow-hidden">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute top-5 left-5">
-            <span className="px-3.5 py-1.5 bg-white/90 backdrop-blur-md rounded-full font-mono-code text-[11px] font-semibold text-[#1a1c1c] shadow-xs">
-              {project.category}
-            </span>
+        {/* Hero Media (Video or Image) */}
+        {project.youtubeId ? (
+          <div className="relative aspect-video w-full bg-black overflow-hidden">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${project.youtubeId}?rel=0`}
+              title={project.title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="w-full h-full border-0"
+            />
           </div>
-        </div>
+        ) : (
+          <div className="relative aspect-[16/9] w-full bg-[#f3f3f4] overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute top-5 left-5">
+              <span className="px-3.5 py-1.5 bg-white/90 backdrop-blur-md rounded-full font-mono-code text-[11px] font-semibold text-[#1a1c1c] shadow-xs">
+                {project.category}
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* Content Body */}
         <div className="p-8 sm:p-10 md:p-12 space-y-8 max-h-[60vh] overflow-y-auto">

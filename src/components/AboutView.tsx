@@ -204,7 +204,7 @@ export const AboutView: React.FC<AboutViewProps> = ({
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-16">
           {ecosystemInitiatives.map((item, idx) => (
             <div
               key={idx}
@@ -221,6 +221,146 @@ export const AboutView: React.FC<AboutViewProps> = ({
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Distinguished Moments & Summit Gallery */}
+        <div className="pt-8 border-t border-[#c5a059]/20">
+          <div className="mb-8">
+            <span className="font-mono-code text-[11px] uppercase tracking-[0.2em] text-[#b3884d] font-semibold block mb-2">
+              SUMMIT &amp; LEADERSHIP GALLERY
+            </span>
+            <h3 className="font-serif-luxury text-[26px] sm:text-[34px] font-normal text-[#141312]">
+              Distinguished Moments &amp; High-Profile Engagements
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="rounded-2xl overflow-hidden bg-white border border-[#cfc4c5]/40 shadow-xs group">
+              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
+                <img
+                  src="/image copy.png"
+                  alt="Avina Lloyd - Triune Gold Sponsorship Felicitation"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3 bg-[#141312]/90 text-[#c5a059] font-mono-code text-[10px] px-2.5 py-1 rounded-sm uppercase tracking-wider">
+                  Gold Sponsor Felicitation
+                </div>
+              </div>
+              <div className="p-5">
+                <h4 className="font-serif-luxury text-[18px] text-[#141312] mb-1">
+                  Triune Ventures Gold Sponsor Award
+                </h4>
+                <p className="font-body text-[13px] text-[#78746d]">
+                  Felicitation by Chairman Oswald Smith T at The RISE &amp; Tamil Women International.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden bg-white border border-[#cfc4c5]/40 shadow-xs group">
+              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
+                <img
+                  src="/celb/WhatsApp Image 2026-08-31 at 23.34.22 (2).jpeg"
+                  alt="Avina Lloyd with veteran director K. Bhagyaraj"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3 bg-[#141312]/90 text-[#c5a059] font-mono-code text-[10px] px-2.5 py-1 rounded-sm uppercase tracking-wider">
+                  Cultural Icon
+                </div>
+              </div>
+              <div className="p-5">
+                <h4 className="font-serif-luxury text-[18px] text-[#141312] mb-1">
+                  With K. Bhagyaraj
+                </h4>
+                <p className="font-body text-[13px] text-[#78746d]">
+                  Discussion with veteran filmmaker K. Bhagyaraj at Global Tamil Awards ceremony.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden bg-white border border-[#cfc4c5]/40 shadow-xs group">
+              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
+                <img
+                  src="/images1/image.png"
+                  alt="Avina Lloyd at CXXO No Ceiling Summit 2024"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3 bg-[#141312]/90 text-[#c5a059] font-mono-code text-[10px] px-2.5 py-1 rounded-sm uppercase tracking-wider">
+                  CXXO Summit 2024
+                </div>
+              </div>
+              <div className="p-5">
+                <h4 className="font-serif-luxury text-[18px] text-[#141312] mb-1">
+                  CXXO No Ceiling Summit
+                </h4>
+                <p className="font-body text-[13px] text-[#78746d]">
+                  The Audacity to Dream — Kalaari Capital, AWS, Havas &amp; TiE Women Global.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden bg-white border border-[#cfc4c5]/40 shadow-xs group">
+              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
+                <img
+                  src="/image.png"
+                  alt="The RISE Tamil Women Leaders Collective"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3 bg-[#141312]/90 text-[#c5a059] font-mono-code text-[10px] px-2.5 py-1 rounded-sm uppercase tracking-wider">
+                  Women Collective
+                </div>
+              </div>
+              <div className="p-5">
+                <h4 className="font-serif-luxury text-[18px] text-[#141312] mb-1">
+                  The RISE Women Collective
+                </h4>
+                <p className="font-body text-[13px] text-[#78746d]">
+                  Convening 30+ women founders and executives across India &amp; the UAE.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden bg-white border border-[#cfc4c5]/40 shadow-xs group">
+              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
+                <img
+                  src="/celb/WhatsApp Image 2026-08-31 at 23.34.22 (11).jpeg"
+                  alt="Avina Lloyd with Tamil Nadu Government Ministers"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3 bg-[#141312]/90 text-[#c5a059] font-mono-code text-[10px] px-2.5 py-1 rounded-sm uppercase tracking-wider">
+                  Ministers Delegation
+                </div>
+              </div>
+              <div className="p-5">
+                <h4 className="font-serif-luxury text-[18px] text-[#141312] mb-1">
+                  State Leadership Delegation
+                </h4>
+                <p className="font-body text-[13px] text-[#78746d]">
+                  With Tamil Nadu Government Ministers at Tamizhar 4.0 Global Summit.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden bg-white border border-[#cfc4c5]/40 shadow-xs group">
+              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
+                <img
+                  src="/images1/WhatsApp Image 2026-08-31 at 18.42.55.jpeg"
+                  alt="TiE Global Summit BLR 2024"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3 bg-[#141312]/90 text-[#c5a059] font-mono-code text-[10px] px-2.5 py-1 rounded-sm uppercase tracking-wider">
+                  TiE Global 2024
+                </div>
+              </div>
+              <div className="p-5">
+                <h4 className="font-serif-luxury text-[18px] text-[#141312] mb-1">
+                  TiE Global Summit BLR
+                </h4>
+                <p className="font-body text-[13px] text-[#78746d]">
+                  Putting Entrepreneurship First — Convening global founders &amp; investors.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

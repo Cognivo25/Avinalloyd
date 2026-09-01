@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PageType, Project, ProjectCategory } from '../types';
-import { PROJECTS } from '../data/portfolioData';
+import { PROJECTS, DIGNITARY_CELEBRITY_ENGAGEMENTS } from '../data/portfolioData';
 
 interface PortfolioViewProps {
   onNavigate: (page: PageType) => void;
@@ -114,11 +114,21 @@ export const PortfolioView: React.FC<PortfolioViewProps> = ({
                 </div>
 
                 {/* Category Badge */}
-                <div className="absolute top-3.5 left-3.5">
+                <div className="absolute top-3.5 left-3.5 flex items-center gap-2">
                   <span className="px-3 py-1 bg-white/95 backdrop-blur-md rounded-sm font-mono-code text-[10px] uppercase tracking-wider text-[#141312] font-semibold shadow-xs">
                     {project.category}
                   </span>
                 </div>
+
+                {/* Video Badge */}
+                {(project.youtubeId || (project.videos && project.videos.length > 0)) && (
+                  <div className="absolute top-3.5 right-3.5">
+                    <span className="px-2.5 py-1 bg-red-600/90 text-white backdrop-blur-md rounded-sm font-mono-code text-[10px] tracking-wider uppercase font-semibold flex items-center gap-1 shadow-xs">
+                      <span>▶</span>
+                      <span>Video</span>
+                    </span>
+                  </div>
+                )}
 
                 {/* Metric Badge */}
                 {project.metrics && (
@@ -160,6 +170,78 @@ export const PortfolioView: React.FC<PortfolioViewProps> = ({
                 </div>
               </div>
             </article>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. Celebrity & Dignitary Engagements Gallery Section */}
+      <section className="px-5 md:px-12 lg:px-20 max-w-[1360px] mx-auto mb-28">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-6 border-b border-[#c5a059]/25 gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-[#b3884d]" />
+              <span className="font-mono-code text-[11px] uppercase tracking-[0.2em] text-[#b3884d] font-semibold">
+                High-Profile Engagements &amp; Summits
+              </span>
+            </div>
+            <h2 className="font-serif-luxury text-[30px] sm:text-[38px] md:text-[44px] font-normal text-[#141312] tracking-tight">
+              Dignitaries, Ministers &amp; Industry Icons
+            </h2>
+          </div>
+          <p className="font-mono-code text-[11px] text-[#78746d] uppercase tracking-wider max-w-sm text-left md:text-right">
+            Official summit delegations, bilateral convenings, and felicitation records.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {DIGNITARY_CELEBRITY_ENGAGEMENTS.map((item) => (
+            <div
+              key={item.id}
+              className="bg-white rounded-2xl border border-[#cfc4c5]/40 overflow-hidden shadow-2xs hover:shadow-lg hover:border-[#c5a059]/40 transition-all duration-300 flex flex-col justify-between group"
+            >
+              <div>
+                <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  {item.badge && (
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2.5 py-0.5 bg-[#141312]/90 text-[#c5a059] font-mono-code text-[9px] uppercase tracking-wider rounded-sm font-semibold border border-[#c5a059]/30 shadow-2xs">
+                        {item.badge}
+                      </span>
+                    </div>
+                  )}
+                  <div className="absolute bottom-2.5 left-2.5 right-2.5">
+                    <span className="font-mono-code text-[9px] text-white/90 uppercase tracking-wider bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-sm inline-block">
+                      {item.event}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-5">
+                  <h3 className="font-serif-luxury text-[18px] text-[#141312] mb-1 group-hover:text-[#b3884d] transition-colors leading-snug">
+                    {item.name}
+                  </h3>
+                  <div className="font-mono-code text-[10px] text-[#b3884d] uppercase font-semibold mb-2">
+                    {item.role}
+                  </div>
+                  {item.description && (
+                    <p className="font-body text-[12px] text-[#55524e] leading-relaxed line-clamp-3">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="px-5 pb-5 pt-0 border-t border-[#cfc4c5]/25 flex items-center justify-between text-[#78746d] font-mono-code text-[10px] uppercase tracking-wider pt-2.5">
+                <span>Official Record</span>
+                <span className="text-[#141312] group-hover:text-[#b3884d] font-semibold">↗</span>
+              </div>
+            </div>
           ))}
         </div>
       </section>

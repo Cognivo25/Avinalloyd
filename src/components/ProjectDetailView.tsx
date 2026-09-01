@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Project, PageType } from '../types';
 import { PROJECTS } from '../data/portfolioData';
 
@@ -17,9 +17,16 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
   onSelectProject,
   onOpenBooking,
 }) => {
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(
+    project.youtubeId || (project.videos && project.videos[0]?.youtubeId) || null
+  );
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [project.id]);
+    setActiveVideoId(
+      project.youtubeId || (project.videos && project.videos[0]?.youtubeId) || null
+    );
+  }, [project.id, project.youtubeId, project.videos]);
 
   // Find related projects in same category or adjacent
   const relatedProjects = PROJECTS.filter((p) => p.id !== project.id).slice(0, 3);
@@ -198,6 +205,90 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                 {project.fullDescription || project.description}
               </p>
             </div>
+
+            {/* Video Showcase Section */}
+            {(project.youtubeId || (project.videos && project.videos.length > 0)) && (
+              <div className="bg-[#141312] text-white rounded-2xl p-6 sm:p-8 md:p-10 border border-[#2a2825] shadow-xl space-y-6">
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <div>
+                    <div className="inline-flex items-center gap-2 mb-1.5">
+                      <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                      <span className="font-mono-code text-[11px] text-[#c5a059] uppercase tracking-widest font-semibold">
+                        Video Showcase &amp; Official Coverage
+                      </span>
+                    </div>
+                    <h3 className="font-serif-luxury text-[22px] sm:text-[28px] font-normal text-white">
+                      On-the-Ground Project Footage
+                    </h3>
+                  </div>
+
+                  {activeVideoId && (
+                    <a
+                      href={`https://youtu.be/${activeVideoId}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-mono-code text-[11px] px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-sm uppercase tracking-wider transition-colors inline-flex items-center gap-2 cursor-pointer font-medium"
+                    >
+                      <span className="font-bold">▶</span>
+                      <span>Watch on YouTube</span>
+                      <span className="text-[12px]">↗</span>
+                    </a>
+                  )}
+                </div>
+
+                {/* Responsive 16:9 YouTube Embed */}
+                {activeVideoId && (
+                  <div className="relative aspect-video w-full rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-black">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${activeVideoId}?rel=0&autoplay=0`}
+                      title={project.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="w-full h-full border-0"
+                    />
+                  </div>
+                )}
+
+                {/* Video Playlist Selector if multiple videos */}
+                {project.videos && project.videos.length > 1 && (
+                  <div className="pt-2">
+                    <span className="font-mono-code text-[10px] uppercase text-[#a09e99] tracking-wider block mb-3">
+                      Select Coverage / Dignitary Address:
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      {project.videos.map((vid) => {
+                        const isSelected = vid.youtubeId === activeVideoId;
+                        return (
+                          <button
+                            key={vid.id}
+                            onClick={() => setActiveVideoId(vid.youtubeId)}
+                            className={`text-left p-3.5 rounded-xl border transition-all cursor-pointer flex flex-col justify-between gap-2 ${
+                              isSelected
+                                ? 'bg-white/15 border-[#c5a059] ring-1 ring-[#c5a059]'
+                                : 'bg-white/5 border-white/10 hover:bg-white/10'
+                            }`}
+                          >
+                            <div>
+                              {vid.speaker && (
+                                <span className="font-mono-code text-[10px] text-[#c5a059] font-semibold block mb-1">
+                                  {vid.speaker}
+                                </span>
+                              )}
+                              <p className="font-body text-[13px] text-white/90 line-clamp-2 leading-snug font-medium">
+                                {vid.title}
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-1 font-mono-code text-[10px] text-[#c5a059] uppercase tracking-wider mt-1">
+                              <span>{isSelected ? '● Playing' : '▶ Play Video'}</span>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Challenge & Solution Bento */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
