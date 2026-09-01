@@ -205,68 +205,14 @@ export const PROJECTS: Project[] = [
       'Mobilised 100 entrepreneurs for global delegation representation in Dubai',
       'Established durable regional mentorship and mutual collaboration pacts',
     ],
-    image: '/images/avina-event-panel-stage.png',
+    image: '/images/great-corridor-leadership.jpg',
     featured: true,
     year: '2024 - Present',
     metrics: '9 Economic Regions Unified',
     linkedInUrl: 'https://in.linkedin.com/in/avina-lloyd',
     quote: 'Develop leaders. Leaders strengthen communities. Communities support entrepreneurs. Entrepreneurs create opportunity.',
   },
-  {
-    id: 'tech-innovation-bts',
-    title: 'Technology, Innovation & Future Thinking',
-    subtitle: 'Exploring What Innovation Can Make Possible (Bengaluru Tech Summit)',
-    client: 'Bengaluru Tech Summit & Financial Emission Calculator',
-    category: 'Innovation & Technology',
-    tags: ['Emerging Tech', 'Bengaluru Tech Summit', 'Sustainability', 'Carbon Finance'],
-    description:
-      'Exploring how technology transforms traditional industries and driving sustainability measurement via the Financial Emission Calculator.',
-    fullDescription:
-      'The future of business will increasingly be shaped by how effectively organisations understand and adopt technology.\n\nEngagement with technology and innovation ecosystems reflects an interest in exploring how emerging technologies can transform industries, solve complex problems, and create new possibilities.\n\nAt Bengaluru Tech Summit, conversations with technology leaders and innovators explored the ways technology continues to influence industries—including traditional sectors such as real estate. Also supported the visibility of technology-led innovation, including work around sustainability and financial impact measurement through initiatives such as the Financial Emission Calculator.\n\nInnovation becomes meaningful when it moves beyond technology for its own sake—and begins solving real problems.',
-    challenge:
-      'Bridging legacy enterprise operations with digital transformation and quantifiable ESG sustainability measurement.',
-    solution:
-      'Advocated for practical technology adoption and supported visibility for emissions and financial impact calculators.',
-    results: [
-      'Active leadership dialogue at Bengaluru Tech Summit with tech luminaries',
-      'Championed financial carbon emission measurement frameworks for businesses',
-      'Bridged prop-tech and operational frameworks with cutting-edge digital tooling',
-    ],
-    image: '/images/avina-event-presentation-uru.png',
-    featured: true,
-    year: '2024 - Present',
-    metrics: 'Tech Ecosystems & Carbon Finance',
-    linkedInUrl:
-      'https://www.linkedin.com/posts/avina-lloyd_the-3-days-bengaluru-tech-summit-2024-was-activity-7269314759894720512-Rw6Q',
-    quote: 'Innovation becomes meaningful when it moves beyond technology for its own sake—and begins solving real problems.',
-  },
-  {
-    id: 'techneat-cfo-innovation',
-    title: 'Building Sustainable Growth Behind Innovation',
-    subtitle: 'Chief Financial Officer — TechNeat Info Solutions',
-    client: 'TechNeat Info Solutions / Investature',
-    category: 'Innovation & Technology',
-    tags: ['Chief Financial Officer', 'Sustainable Tech', 'Financial Discipline', 'Digital Transformation'],
-    description:
-      'Technology companies are built on ideas. Sustainable technology companies are built on turning those ideas into long-term value through robust financial structures and strategic discipline.',
-    fullDescription:
-      'Technology companies are built on ideas. Sustainable technology companies are built on the ability to turn those ideas into long-term value.\n\nAs the Chief Financial Officer at TechNeat Info Solutions, I contribute to the financial and strategic foundation behind a technology company focused on solving complex business challenges through practical, scalable solutions.\n\nTechNeat operates at the intersection of technology, business automation and digital transformation, developing solutions across areas including enterprise technology, web and mobile applications, IoT and emerging digital solutions. With a presence extending beyond India into international markets, the company’s journey represents a larger ambition—to use technology not simply as a tool, but as a means of helping businesses simplify complexity, improve efficiency and unlock new possibilities.\n\nMy role as CFO extends beyond financial management: it involves supporting the decisions that allow innovation to grow responsibly, balancing ambition with sustainability, supporting innovation with financial discipline, and transforming growth opportunities into long-term value.\n\nOne example of this approach is TechNeat’s work on the Financial Emission Calculator for Investature, a solution designed to bring greater precision and transparency to sustainability-aligned financial decisions.\n\nFor me, financial leadership in a technology company is ultimately about helping create the conditions in which innovation can move forward with confidence. Because behind every scalable idea must be a sustainable foundation.',
-    challenge:
-      'Balancing high-velocity technology innovation with disciplined capital allocation, statutory governance, and global scalability.',
-    solution:
-      'Engineered strategic financial frameworks, cross-border fiscal governance, and project-level ROI models connecting tech development with measurable enterprise value.',
-    results: [
-      'Supported international market expansion across enterprise tech, web/mobile apps & IoT',
-      'Financial leadership behind the Financial Emission Calculator for Investature',
-      'Established high-accountability fiscal and strategic decision-making cadences',
-    ],
-    image: '/images/avina-event-presentation-uru.png',
-    featured: true,
-    year: 'Present',
-    metrics: 'Global Tech & ESG Finance',
-    linkedInUrl: 'https://www.linkedin.com/company/techneat-info-solutions/',
-    quote: 'Behind every scalable idea must be a sustainable foundation.',
-  },
+
   {
     id: 'shilpa-foundation-smart-nildhana',
     title: 'Transforming Bengaluru: Smart Nildhana & Bus Shelters',
@@ -397,6 +343,16 @@ export const PROJECTS: Project[] = [
 ];
 
 export const DIGNITARY_CELEBRITY_ENGAGEMENTS: DignitaryEngagement[] = [
+  {
+    id: 'global-tamil-awards-dignitary',
+    name: 'Dignitary & Leadership Interaction',
+    role: 'Distinguished Guest & Community Patron',
+    event: 'Global Tamil Awards & Foundation',
+    image: '/celb/avina-dignitary-global-tamil-awards.jpg',
+    badge: 'Distinguished Patron',
+    description:
+      'Executive interaction and community leadership dialogue at the Global Tamil Awards & Foundation ceremony.',
+  },
   {
     id: 'k-bhagyaraj-felicitation',
     name: 'K. Bhagyaraj',

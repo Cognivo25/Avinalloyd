@@ -280,6 +280,27 @@ export const AboutView: React.FC<AboutViewProps> = ({
             <div className="rounded-2xl overflow-hidden bg-white border border-[#cfc4c5]/40 shadow-xs group">
               <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
                 <img
+                  src="/celb/avina-dignitary-global-tamil-awards.jpg"
+                  alt="Avina Lloyd with Dignitary at Global Tamil Awards"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3 bg-[#141312]/90 text-[#c5a059] font-mono-code text-[10px] px-2.5 py-1 rounded-sm uppercase tracking-wider">
+                  Summit Dignitary
+                </div>
+              </div>
+              <div className="p-5">
+                <h4 className="font-serif-luxury text-[18px] text-[#141312] mb-1">
+                  Global Tamil Awards Dignitary
+                </h4>
+                <p className="font-body text-[13px] text-[#78746d]">
+                  Leadership interaction and felicitations at Global Tamil Awards & Foundation ceremony.
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl overflow-hidden bg-white border border-[#cfc4c5]/40 shadow-xs group">
+              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-200">
+                <img
                   src="/images1/image.png"
                   alt="Avina Lloyd at CXXO No Ceiling Summit 2024"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"

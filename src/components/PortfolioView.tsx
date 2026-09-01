@@ -23,7 +23,6 @@ export const PortfolioView: React.FC<PortfolioViewProps> = ({
     'MSME Scale & Governance',
     'Leadership & Community',
     'Women in Leadership',
-    'Innovation & Technology',
     'CSR & Social Impact',
   ];
 

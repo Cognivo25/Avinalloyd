@@ -158,43 +158,43 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
 
         {/* 3-Column Highlights / Metrics */}
-        <div className="mt-14 md:mt-20 w-full max-w-4xl md:max-w-5xl lg:max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0 items-center text-center">
+        <div className="mt-10 sm:mt-14 md:mt-20 w-full max-w-4xl md:max-w-5xl lg:max-w-6xl mx-auto px-2 sm:px-4">
+          <div className="grid grid-cols-3 items-center text-center">
             {/* Stat 1 */}
-            <div className="flex flex-col items-center sm:px-6 md:px-10">
-              <span className="font-serif-luxury text-[36px] sm:text-[46px] md:text-[52px] text-[#b3884d] leading-none mb-1.5 font-normal">
+            <div className="flex flex-col items-center justify-center px-1.5 xs:px-2 sm:px-6 md:px-10">
+              <span className="font-serif-luxury text-[26px] xs:text-[32px] sm:text-[46px] md:text-[52px] text-[#b3884d] leading-none mb-1 sm:mb-1.5 font-normal">
                 20+
               </span>
-              <span className="font-mono-code text-[11px] sm:text-[12px] text-[#403d39] tracking-[0.18em] uppercase font-semibold">
+              <span className="font-mono-code text-[9px] xs:text-[10px] sm:text-[12px] text-[#403d39] tracking-[0.08em] sm:tracking-[0.18em] uppercase font-semibold leading-tight">
                 YEARS
               </span>
-              <span className="font-mono-code text-[10px] sm:text-[11px] text-[#78746d] tracking-[0.14em] uppercase mt-0.5">
+              <span className="font-mono-code text-[7.5px] xs:text-[9px] sm:text-[11px] text-[#78746d] tracking-[0.05em] sm:tracking-[0.14em] uppercase mt-0.5 leading-tight">
                 EXECUTIVE LEADERSHIP
               </span>
             </div>
 
             {/* Stat 2 */}
-            <div className="flex flex-col items-center sm:border-x sm:border-[#c5a059]/35 sm:px-6 md:px-10">
-              <span className="font-serif-luxury text-[36px] sm:text-[46px] md:text-[52px] text-[#141312] leading-none mb-1.5 font-normal">
+            <div className="flex flex-col items-center justify-center border-x border-[#c5a059]/35 px-1.5 xs:px-2 sm:px-6 md:px-10">
+              <span className="font-serif-luxury text-[26px] xs:text-[32px] sm:text-[46px] md:text-[52px] text-[#141312] leading-none mb-1 sm:mb-1.5 font-normal">
                 4×
               </span>
-              <span className="font-mono-code text-[11px] sm:text-[12px] text-[#403d39] tracking-[0.18em] uppercase font-semibold">
+              <span className="font-mono-code text-[9px] xs:text-[10px] sm:text-[12px] text-[#403d39] tracking-[0.08em] sm:tracking-[0.18em] uppercase font-semibold leading-tight">
                 DELL QUALITY
               </span>
-              <span className="font-mono-code text-[10px] sm:text-[11px] text-[#78746d] tracking-[0.14em] uppercase mt-0.5">
+              <span className="font-mono-code text-[7.5px] xs:text-[9px] sm:text-[11px] text-[#78746d] tracking-[0.05em] sm:tracking-[0.14em] uppercase mt-0.5 leading-tight">
                 AWARD WINNER
               </span>
             </div>
 
             {/* Stat 3 */}
-            <div className="flex flex-col items-center sm:px-6 md:px-10">
-              <span className="font-serif-luxury text-[26px] sm:text-[34px] md:text-[38px] text-[#b3884d] leading-none mb-1.5 sm:mt-1 font-normal tracking-[0.06em]">
+            <div className="flex flex-col items-center justify-center px-1.5 xs:px-2 sm:px-6 md:px-10">
+              <span className="font-serif-luxury text-[17px] xs:text-[22px] sm:text-[34px] md:text-[38px] text-[#b3884d] leading-none mb-1 sm:mb-1.5 sm:mt-1 font-normal tracking-[0.04em] sm:tracking-[0.06em]">
                 SIX SIGMA
               </span>
-              <span className="font-mono-code text-[11px] sm:text-[12px] text-[#403d39] tracking-[0.18em] uppercase font-semibold">
+              <span className="font-mono-code text-[9px] xs:text-[10px] sm:text-[12px] text-[#403d39] tracking-[0.08em] sm:tracking-[0.18em] uppercase font-semibold leading-tight">
                 QUALITY & PROCESS
               </span>
-              <span className="font-mono-code text-[10px] sm:text-[11px] text-[#78746d] tracking-[0.14em] uppercase mt-0.5">
+              <span className="font-mono-code text-[7.5px] xs:text-[9px] sm:text-[11px] text-[#78746d] tracking-[0.05em] sm:tracking-[0.14em] uppercase mt-0.5 leading-tight">
                 EXCELLENCE
               </span>
             </div>
